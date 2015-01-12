@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  get 'student_member/index'
+
+  get 'student_member/show'
+
   devise_for :coordinators
   devise_for :student_members
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  resources :student_member
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
