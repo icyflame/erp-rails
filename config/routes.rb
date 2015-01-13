@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'alumni_data/update'
+
   get 'alumni/index'
 
   get 'alumni/show'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :student_member
   resources :alumni
+  resource :alumni_datum
 
 	root 'student_member#index'
   # The priority is based upon order of creation: first created -> highest priority.
