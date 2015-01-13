@@ -8,3 +8,23 @@
 
 <h3> Search: <%= @astat.search %> </h3>
 <h3> Calling: <%= @astat.response %> </h3>
+
+<%= form_for(@alumni_data) do |f| %>
+
+<% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
+
+<% if key < 2 or key >= AlumniData.column_names.length - 2 %>
+
+<% next %>
+
+<% end %>
+
+<%= label_tag attribute.humanize %>
+
+<%= text_field_tag "alumni_data["+attribute+"]", @alumni_data.attributes[attribute].to_s %>
+
+<% end %>
+
+<%= f.submit %>
+
+<% end %>
