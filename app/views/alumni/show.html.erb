@@ -11,6 +11,8 @@
 
 <%= form_for(@alumni_data) do |f| %>
 
+<%= text_field_tag "id", @alumni_data.id.to_s, type: 'hidden' %>
+
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
 <% if key < 2 or key >= AlumniData.column_names.length - 2 %>
@@ -21,7 +23,7 @@
 
 <%= label_tag attribute.humanize %>
 
-<%= text_field_tag "alumni_data["+attribute+"]", @alumni_data.attributes[attribute].to_s %>
+<%= text_field_tag "alumni_data[" + attribute + "]", @alumni_data.attributes[attribute].to_s %>
 
 <% end %>
 
