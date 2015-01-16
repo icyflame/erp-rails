@@ -9,6 +9,8 @@
 <h3> Search: <%= @astat.search %> </h3>
 <h3> Calling: <%= @astat.response %> </h3>
 
+<h3> Assigned to <%= StudentMember.find(@assignedtoid).name %> (ID <%= @assignedtoid %>)</h3>
+
 <%= form_for(@alumni_data) do |f| %>
 
 <%= text_field_tag "id", @alumni_data.id.to_s, type: 'hidden' %>
