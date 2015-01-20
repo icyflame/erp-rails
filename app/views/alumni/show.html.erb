@@ -25,7 +25,15 @@
 
 <%= label_tag attribute.humanize %>
 
+<% if @editingAllowed %>
+
 <%= text_field_tag "alumni_data[" + attribute + "]", @alumni_data.attributes[attribute].to_s %>
+
+<% else %>
+
+<%= text_field_tag "alumni_data[" + attribute + "]", @alumni_data.attributes[attribute].to_s, disabled: 'disabled' %>
+
+<% end %>
 
 <% end %>
 
