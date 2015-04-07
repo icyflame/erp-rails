@@ -9,7 +9,19 @@
 <h3> Search: <%= @astat.search %> </h3>
 <h3> Calling: <%= @astat.response %> </h3>
 
-<h3> Assigned to <%= StudentMember.find(@assignedtoid).name %> (ID <%= @assignedtoid %>)</h3>
+<h3> 
+
+<% if @assignedtoid > 0 %>
+
+Assigned to <%= StudentMember.find(@assignedtoid).name %> (ID <%= @assignedtoid %>)
+
+<% else %>
+
+Not assigned to any Student Member. Contact SysAdmin for assigning this Alumni.
+
+<% end %>
+
+ </h3>
 
 <%= form_for(@alumni_data) do |f| %>
 
