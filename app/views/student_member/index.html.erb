@@ -23,6 +23,7 @@ thead{
 		<td>hall</td>
 		<td>search</td>
 		<td>response</td>
+		<td></td>
 	</thead>
 	<tbody>
 		<% @allalums.each do |alumni| %>
@@ -33,6 +34,7 @@ thead{
 			<td><%= alumni.hall %></td>
 			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
 			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
+			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
 		</tr>
 		<% end %>
 		<tr>
