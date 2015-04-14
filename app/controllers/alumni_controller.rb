@@ -11,11 +11,13 @@ class AlumniController < ApplicationController
     @editingAllowed = false
     @assignedtoid = -1
 
-    if @tie = TieAlumniWithStudentMember.find_by_StudentMember_id(current_student_member.id)
-      @assignedtoid = @tie.Alumni_id
+    if @tie = TieAlumniWithStudentMember.find_by_Alumni_id(@thisID)
+      @assignedtoid = @tie.StudentMember_id
       if @assignedtoid == current_student_member.id
         @editingAllowed = true
       end
+    else
+      render plain: "This alumni has not been allotted to anyone yet. Contact the SysAdmin."
     end
 
   	# render plain: @alumni_data.inspect
