@@ -17,6 +17,7 @@ class StudentMemberController < ApplicationController
   end
 
   # render plain: @allties.inspect
+  # render plain: AlumniStatus.where("Alumni_id = #{1}").inspect
 end
 
 def show

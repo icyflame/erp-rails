@@ -1,14 +1,17 @@
-<h1>Home page for StudentMember ID <%= @thisID %> </h1>
-
-<h2>Alumni Assigned to you</h2>
-
 <style>
 thead td:hover{
 	cursor: pointer;
 }
+
+thead{
+	text-transform: uppercase;
+	font-weight: bold;
+}
 </style>
 
-<p>Total Alumni Allotted: <%= @allalums.length %></p>
+<h1>Home page for StudentMember ID <%= @thisID %> </h1>
+
+<h3>Total Alumni Allotted: <%= @allalums.length %></h3>
 
 <br>
 
@@ -18,6 +21,8 @@ thead td:hover{
 		<td>name</td>
 		<td>department</td>
 		<td>hall</td>
+		<td>search</td>
+		<td>response</td>
 	</thead>
 	<tbody>
 		<% @allalums.each do |alumni| %>
@@ -26,6 +31,8 @@ thead td:hover{
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
+			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
+			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
 		</tr>
 		<% end %>
 		<tr>
