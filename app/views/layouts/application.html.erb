@@ -1,76 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>App</title>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= csrf_meta_tags %>
+	<title>SAC Internal ERP</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 
-<style>
-a{
-	-webkit-transition: all 0.5s ease-out;
-	-moz-transition: all 0.5s ease-out;
-	-o-transition: all 0.5s ease-out;
-	transition: all 0.5s ease-out;
-}
-
-a:hover{
-	-webkit-transition: all 0.5s ease-out;
-	-moz-transition: all 0.5s ease-out;
-	-o-transition: all 0.5s ease-out;
-	transition: all 0.5s ease-out;
-	}
-
-.primary a{
-background-color: #337ab7; 
-color: white;
-margin-left: 10px;
-margin-right: 10px;
-}	
-
-.primary a:hover{
-background-color: white;
-color: #337ab7;
-margin-left: 10px;
-margin-right: 10px;
-}
-</style>
 </head>
 <body>
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">SAC Internal ERP</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<% if student_member_signed_in? %>
+					<li>
+						<a href="#">Signed in as <%= current_student_member.name %></a>
+					</li>
+					<li>
+						<%= link_to "Signout", destroy_student_member_session_path, method: :delete %>
+					</li>
 
-<ul class="nav nav-pills nav-justified primary">
-	<% if student_member_signed_in? or coordinator_signed_in? %>
+					<% else %>
 
+					<% if coordinator_signed_in? %>
+					<li>
+						<a href="#">Signed in as <%= current_coordinator_member.name %></a>
+					</li>
+					<li>
+						<%= link_to "Signout", destroy_coordinator_session_path, method: :delete %>
+					</li>
 
-		<li role="presentation" class="alert">
+					<% else %>
 
-	<% if student_member_signed_in? %>
+					<li>
+						<%= link_to "Sign in as a Student Member", new_student_member_session_path %>
+					</li>
+					<li>
+						<%= link_to "Sign in as a Coordinator", new_coordinator_session_path %>
+					</li>
+					<% end %>
+					<% end %>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div><!--/.container-fluid -->
+	</div>
 
-		<%= link_to "Signout", destroy_student_member_session_path, method: :delete %>
-
-<% else %>
-
-		<%= link_to "Signout", destroy_coordinator_session_path, method: :delete %>
-
-<% end %>
-
-	</li>
-
-
-<% else %>
-
-
-		<li role="presentation">
-	<%= link_to "Sign in as a Student Member", new_student_member_session_path %>
-	</li>
-	<li role="presentation">
-	<%= link_to "Sign in as a Coordinator", new_coordinator_session_path %>
-	</li>
-
-<% end %>
-</ul>
-
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>
