@@ -1,6 +1,8 @@
 class StudentMemberController < ApplicationController
-	before_action :authenticate_student_member!
   def index
+    if not student_member_signed_in?
+
+      render plain: "You don't have permissions to view this page."
   	# render plain: params.inspect
 		# ensure that only student member who
 		# is logged in can see his/her own
