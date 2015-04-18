@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
   	devise_parameter_sanitizer.for(:account_update) << :name
   	devise_parameter_sanitizer.for(:account_update) << :rollnum
   end
+
+  def after_sign_in_path_for(coordiantor)
+    coordinator_index_path
+  end
+
+  def after_sign_in_path_for(student_member)
+    student_member_index_path
+  end
 end

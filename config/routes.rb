@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'coordinator/index'
+
+  get 'coordinator/show'
+
   get 'alumni_data/update'
 
   get 'alumni/index'
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
   get 'student_member/show'
 
   devise_for :coordinators
-  devise_for :student_members
+  devise_for :student_member
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
