@@ -1,2 +1,58 @@
-<h1>Profile page for StudentMember ID <%= @thisID %></h1>
+<style>
+thead td:hover{
+	cursor: pointer;
+}
 
+thead{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+</style>
+
+<h1>Home page for StudentMember ID <%= @thisID %> </h1>
+
+<h3>Total Alumni Allotted: <%= @allalums.length %></h3>
+
+<br>
+
+<table id="alumniTable" class="table table-striped">
+	<thead>
+		<td>id</td>
+		<td>name</td>
+		<td>department</td>
+		<td>hall</td>
+		<td>search</td>
+		<td>response</td>
+		<td></td>
+	</thead>
+	<tbody>
+		<% @allalums.each do |alumni| %>
+		<tr>
+			<td><%= alumni.id %></td>
+			<td><%= alumni.name %></td>
+			<td><%= alumni.department %></td>
+			<td><%= alumni.hall %></td>
+			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
+			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
+			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
+		</tr>
+		<% end %>
+		<tr>
+		</tr>
+	</tbody>
+</table>
+
+<script>
+$(document).ready(function() 
+    { 
+        $("#alumniTable").tablesorter(); 
+        $("thead td").on("click", function(){
+        	$("thead td").each(function(){
+        		$(this).css("background", "white");
+        	});
+        	$(this).css("background", "lightblue");
+        });
+    } 
+); 
+  
+</script>
