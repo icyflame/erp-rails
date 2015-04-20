@@ -19,7 +19,15 @@ class ApplicationController < ActionController::Base
     coordinator_index_path
   end
 
-  def after_sign_in_path_for(student_member)
-    student_member_index_path
+  # def after_sign_in_path_for(student_member)
+  #   student_member_index_path
+  # end
+
+  def after_sign_up_path_for(coordiantor)
+    new_coordinator_registration_path
   end
+
+  # def after_sign_up_path_for(student_member)
+  #   new_student_member_registration_path
+  # end
 end
