@@ -8,8 +8,8 @@ class AlumniTest < ActiveSupport::TestCase
 	end
 
 	test "records_being_created" do
-		a = Alumni.where({ :name => "alumni1" })
-		assert_equal a, 10, "The ID is not equal"
+		a = Alumni.find(5)
+		assert_equal a.id, 5, "The ID is not equal"
 	end
 
 	# test "validations_of_columns" do

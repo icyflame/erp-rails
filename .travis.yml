@@ -6,7 +6,7 @@ addons:
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - cp config/database.yml.travis config/database.yml
-script: 'true'
+script: 'bundle exec rake'
 deploy:
   provider: heroku
   api_key:
