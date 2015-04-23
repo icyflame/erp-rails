@@ -1,10 +1,21 @@
 language: ruby
 rvm:
-  - 1.9.3
+- 1.9.3
 addons:
-  postgresql: "9.1"
-before_script: 
-  # - "bundle exec rake db:drop db:create db:migrate"
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
-script: "true"
+  postgresql: '9.1'
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+script: 'true'
+deploy:
+  provider: heroku
+  api_key:
+    secure: Mh5IwVSTucNXGx76lD/te6lo0DFo34sYizmTYSGlv2xipdD+4+zfRrJ4C1z/qby/VObvJ71doPOSQAqHHE81RXtDe0fZLBWHSmfLwZqtvEusQwrzmyzRfld4IBdOcOowV0BDt5h6VSjMR1k2LvpQsWESk6+Ow1rHd6/90AbhsGA=
+
+  app:
+    master: networking-portal-production
+    staging: networking-portal-staging
+
+  run:
+    - "rake db:migrate"
+    - restart
