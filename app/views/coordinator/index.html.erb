@@ -4,17 +4,37 @@
 <h1><span class="glyphicon glyphicon-home"></span> <span class="label label-danger">Coordinator</span>  <span class="label label-success"> <%= @coordinator.name %> </span> </h1>
 <br><hr>
 
-<div class="col-lg-3">
+<!-- <div class="col-lg-3">
 	<ul class="list-group">
 		<li class="list-group-item"><b>Name </b><span class="pull-right"><%= @coordinator.name %></span></li>
 		<li class="list-group-item"><b>Portfolio </b><span class="pull-right"><%= @coordinator.portfolio %></span></li>
 		<li class="list-group-item"><b>Roll No </b><span class="pull-right"><%= @coordinator.rollnum %></span></li>
 	</ul>
-</div>
+</div> -->
 
-<div class="col-lg-9">
-	<div class="well" align="center">
+<div class="">
+	<div class="" align="">
+		<% if Alumni.count %>
+		<table id-"alumniTable" class="table table-striped">
+			<thead>
+				<td>Alumni</td>
+				<td>Assigned to</td>
+				<td>Status</td>
+			</thead>
+			<tbody>
+				<% @allAlums.each do |alumni| %>
+				<tr>
+					<td><%= alumni.name %></td>
+					<% @tie = TieAlumniWithStudentMember.where("Alumni_id = #{alumni.id}") %>
+					
+					
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<% else %>
 		<h3>Currently no data available</h3>
+		<% end %>
 	</div>
 	<br>
 	<div class="row">
@@ -29,5 +49,22 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<div class="row">
+		
+	</div>
 </div>
 
+<script>
+$(document).ready(function() 
+  { 
+    $("#alumniTable").tablesorter(); 
+    $("thead td").on("click", function(){
+    	$("thead td").each(function(){
+    		$(this).css("background", "white");
+    	});
+    	$(this).css("background", "lightblue");
+    });
+  } 
+); 
+</script>

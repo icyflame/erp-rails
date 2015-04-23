@@ -23,7 +23,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<% if student_member_signed_in? %>
 					<li>
-						<a href="#">Signed in as <%= current_student_member.name %></a>
+						<a href="<%= student_member_show_path %>">Signed in as <%= current_student_member.name %></a>
 					</li>
 					<li>
 						<%= link_to "Signout", destroy_student_member_session_path, method: :delete %>
@@ -33,7 +33,7 @@
 
 					<% if coordinator_signed_in? %>
 					<li>
-						<a href="#">Signed in as <%= current_coordinator.name %></a>
+						<a href="<%= coordinator_show_path %>">Signed in as <%= current_coordinator.name %></a>
 					</li>
 					<li>
 						<%= link_to "Signout", destroy_coordinator_session_path, method: :delete %>

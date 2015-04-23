@@ -4,6 +4,8 @@ class CoordinatorController < ApplicationController
   	@thisID = current_coordinator.id
 
   	@coordinator = Coordinator.find(@thisID)
+
+    @allAlums = Alumni.all()
   end
 
   def show
