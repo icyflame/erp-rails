@@ -1,3 +1,3 @@
-# Networking Portal - on Rails
+# Networking Portal - on Rails [![Build Status](https://travis-ci.org/icyflame/networking-rails.svg?branch=master)](https://travis-ci.org/icyflame/networking-rails)
 
-Prototype for the Students' Alumni Cell, IIT Kharagpur
+The Internal ERP used by Students' Alumni Cell, IIT Kharagpur.
