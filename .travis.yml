@@ -1,2 +1,10 @@
 language: ruby
-script: 'true'
+rvm:
+  - 1.9.3
+addons:
+  postgresql: "9.1"
+before_script: 
+  # - "bundle exec rake db:drop db:create db:migrate"
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+script: "true"
