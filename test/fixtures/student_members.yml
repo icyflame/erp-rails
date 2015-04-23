@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  rollnum: MyString
-  portfolio: MyString
-
-two:
-  name: MyString
-  rollnum: MyString
-  portfolio: MyString
+<% 10.times do |n| %>
+student_<%= n %>:
+  id: <%= "#{n}" %>
+  name: <%= "student#{n}" %>
+  rollnum: <%= "student#{n}" %>
+  portfolio: Some portfolio
+  email: <%= "coordintor#{n}@g.com" %>
+<% end %>
