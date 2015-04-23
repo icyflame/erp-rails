@@ -8,6 +8,7 @@ class StudentMemberController < ApplicationController
 		# is logged in can see his/her own
 		# record.
     @thisID = current_student_member.id
+    @student = StudentMember.find(@thisID)
 
     @allties = TieAlumniWithStudentMember.where("StudentMember_id = #{current_student_member.id}")
 

@@ -9,38 +9,76 @@ thead{
 }
 </style>
 
-<h1>Home page for StudentMember ID <%= @thisID %> </h1>
-
-<h3>Total Alumni Allotted: <%= @allalums.length %></h3>
+<h1>Home page <span class="label label-danger">StudentMember</span>  <span class="label label-success"> <%= @student.name %> </span> </h1>
+<br><hr>
+<!-- <h3>Total Alumni Allotted: <%= @allalums.length %></h3> -->
 
 <br>
 
-<table id="alumniTable" class="table table-striped">
-	<thead>
-		<td>id</td>
-		<td>name</td>
-		<td>department</td>
-		<td>hall</td>
-		<td>search</td>
-		<td>response</td>
-		<td></td>
-	</thead>
-	<tbody>
-		<% @allalums.each do |alumni| %>
-		<tr>
-			<td><%= alumni.id %></td>
-			<td><%= alumni.name %></td>
-			<td><%= alumni.department %></td>
-			<td><%= alumni.hall %></td>
-			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
-			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
-			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
-		</tr>
-		<% end %>
-		<tr>
-		</tr>
-	</tbody>
-</table>
+<div class="col-lg-3">
+	<ul class="list-group">
+		<li class="list-group-item"><b>Name</b><span class="pull-right"><%= @student.name %></span></li>
+		<li class="list-group-item"><b>portfolio</b><span class="pull-right"><%= @student.portfolio %></span></li>
+		<li class="list-group-item"><b>Roll No</b><span class="pull-right"><%= @student.rollnum %></span></li>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detais">Details</button>
+	</ul>
+</div>
+<div class="col-lg-9">
+	<% if @allalums.length > 0 %> 
+	<table id="alumniTable" class="table table-striped">
+		<thead>
+			<td>id</td>
+			<td>name</td>
+			<td>department</td>
+			<td>hall</td>
+			<td>search</td>
+			<td>response</td>
+			<td></td>
+		</thead>
+		<tbody>
+			<% @allalums.each do |alumni| %>
+			<tr>
+				<td><%= alumni.id %></td>
+				<td><%= alumni.name %></td>
+				<td><%= alumni.department %></td>
+				<td><%= alumni.hall %></td>
+				<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
+				<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
+				<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
+			</tr>
+			<% end %>
+			<tr>
+			</tr>
+		</tbody>
+	</table>
+
+	<% else %>
+
+	<div class="well" align="center">
+		<h3>No alums alloted yet.</h3>
+	</div>
+
+	<% end %>
+</div>
+
+<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Sign up as a Mentor </h4>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group">
+					<li class="list-group-item"><b>Name</b><span class="pull-right"><%= @student.name %></span></li>
+					<li class="list-group-item"><b>portfolio</b><span class="pull-right"><%= @student.portfolio %></span></li>
+					<li class="list-group-item"><b>Roll No</b><span class="pull-right"><%= @student.rollnum %></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <script>
 $(document).ready(function() 

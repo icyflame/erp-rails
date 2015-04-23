@@ -1,5 +1,13 @@
 class CoordinatorController < ApplicationController
-	def index
-		
-	end
+	before_action :authenticate_coordinator!
+  def index
+  	@thisID = current_coordinator.id
+
+  	@coordinator = Coordinator.find(@thisID)
+
+    @allAlums = Alumni.all()
+  end
+
+  def show
+  end
 end

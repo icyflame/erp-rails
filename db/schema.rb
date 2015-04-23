@@ -122,16 +122,6 @@ ActiveRecord::Schema.define(version: 20150414182035) do
   add_index "student_members", ["email"], name: "index_student_members_on_email", unique: true
   add_index "student_members", ["reset_password_token"], name: "index_student_members_on_reset_password_token", unique: true
 
-  create_table "tie_alumni_student_members", force: true do |t|
-    t.integer  "Alumni_id"
-    t.integer  "StudentMember_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tie_alumni_student_members", ["Alumni_id"], name: "index_tie_alumni_student_members_on_Alumni_id"
-  add_index "tie_alumni_student_members", ["StudentMember_id"], name: "index_tie_alumni_student_members_on_StudentMember_id"
-
   create_table "tie_alumni_with_student_members", force: true do |t|
     t.integer  "Alumni_id"
     t.integer  "StudentMember_id"
