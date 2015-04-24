@@ -6,16 +6,17 @@ addons:
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - cp config/database.yml.travis config/database.yml
-script: 'bundle exec rake'
+script: bundle exec rake
 deploy:
   provider: heroku
   api_key:
     secure: Mh5IwVSTucNXGx76lD/te6lo0DFo34sYizmTYSGlv2xipdD+4+zfRrJ4C1z/qby/VObvJ71doPOSQAqHHE81RXtDe0fZLBWHSmfLwZqtvEusQwrzmyzRfld4IBdOcOowV0BDt5h6VSjMR1k2LvpQsWESk6+Ow1rHd6/90AbhsGA=
-
   app:
     master: networking-portal-production
     staging: networking-portal-staging
-
   run:
-    - "rake db:migrate"
-    - restart
+  - rake db:migrate
+  - restart
+notifications:
+  slack:
+    secure: JN7vxNttbCUeCcE2f9lNVKGV0T9ApcHN5oH4Dzld1fGIrTPEvbf/aRhMjYM8/cJgNJHBdhcTQYARFgwY5SBLnE3k0AHXkmkcKFVY1S89jYln4F+BEr7H1KNPs42eLNwl4X6sBF7y+ja26KSef7+leM7xmT+Gj80aLU99o/S899A=
