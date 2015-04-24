@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   resources :alumni
   resource :alumni_datum
 
-	root 'student_member#index'
+  get '/homepage' => 'staticpage#index'
+  get '/homepage/studentmember' => 'student_member#index'
+  get '/homepage/coordinator' => 'coordinator#index'
+
+  root 'routing#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
