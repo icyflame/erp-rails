@@ -7,16 +7,17 @@ class StudentMemberController < ApplicationController
 		# record.
     @thisID = current_student_member.id
 
-    @allties = TieAlumniWithStudentMember.where("StudentMember_id = #{current_student_member.id}")
+    @allties = TieAlumniWithStudentMember.where({ :StudentMember_id => "#{current_student_member.id}" })
+
+    # @allties = TieAlumniWithStudentMember.where(" \"StudentMember_id\" = #{current_student_member.id}")
 
     @allalums = Array.new
 
     @allties.each do |this_tie|
-    # puts Alumni.find(this_tie.Alumni_id).name
-    @allalums.push(Alumni.find(this_tie.Alumni_id))
-  end
 
-  # render plain: @allties.inspect
-  # render plain: AlumniStatus.where("Alumni_id = #{1}").inspect
-end
+      @allalums.push(Alumni.find(this_tie.alumni_id))
+      
+    end
+
+  end
 end
