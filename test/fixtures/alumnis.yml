@@ -1,8 +1,8 @@
 
 <% 10.times do |n| %>
-alumni_<%= n %>:
-  id: <%= "#{n}" %>
-  name: <%= "alumni#{n}" %>
-  year: <%= "#{n}" %>
+alumni_<%= n+1 %>:
+  id: <%= "#{n+1}" %>
+  name: <%= "alumni#{n+1}" %>
+  year: <%= "#{n+1}" %>
   hall: SH
 <% end %>
