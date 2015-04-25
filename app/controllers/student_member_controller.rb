@@ -15,7 +15,7 @@ class StudentMemberController < ApplicationController
 
     @allties.each do |this_tie|
 
-      @allalums.push(Alumni.find(this_tie.alumni_id))
+      @allalums.push(Alumni.find(this_tie.Alumni_id))
       
     end
 

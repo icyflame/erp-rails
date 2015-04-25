@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 <% 10.times do |n| %>
-coordinator_<%= n %>:
-  id: <%= "#{n}" %>
-  name: <%= "coordinator#{n}" %>
-  rollnum: <%= "coordinator#{n}" %>
+coordinator_<%= n+1 %>:
+  id: <%= "#{n+1}" %>
+  name: <%= "coordinator#{n+1}" %>
+  rollnum: <%= "coordinator#{n+1}" %>
   portfolio: Some portfolio
-  email: <%= "coordintor#{n}@g.com" %>
+  email: <%= "coordintor#{n+1}@g.com" %>
 <% end %>

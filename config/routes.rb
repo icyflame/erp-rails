@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/homepage/studentmember' => 'student_member#index'
   get '/homepage/coordinator' => 'coordinator#index'
 
+  get '/administrator/createallusers' => 'staticpage#createallusers'
+
   root 'routing#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

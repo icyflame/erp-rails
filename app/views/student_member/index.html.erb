@@ -32,8 +32,8 @@ thead{
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
-			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].search %></td>
-			<td><%= AlumniStatus.where("Alumni_id = #{alumni.id}")[0].response %></td>
+			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].search %></td>
+			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].response %></td>
 			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
 		</tr>
 		<% end %>
