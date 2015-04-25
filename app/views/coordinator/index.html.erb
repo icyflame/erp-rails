@@ -48,9 +48,8 @@ thead{
 				<% @allAlums.each do |alumni| %>
 				<tr>
 					<td><%= alumni.name %></td>
-					<% @tie = TieAlumniWithStudentMember.where("Alumni_id = #{alumni.id}") %>
 					
-					
+					<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" }).search %></td>
 				</tr>
 				<% end %>
 			</tbody>

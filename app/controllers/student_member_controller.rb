@@ -17,6 +17,10 @@ class StudentMemberController < ApplicationController
     @allalums.push(Alumni.find(this_tie.Alumni_id))
   end
 
+  def show
+    @thisID = current_student_member.id
+  end
+
   # render plain: @allties.inspect
   # render plain: AlumniStatus.where("Alumni_id = #{1}").inspect
 end
