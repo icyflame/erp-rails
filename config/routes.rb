@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'viewall/index'
+
+  get 'viewall/show'
+
   get 'alumni_data/update'
 
   get 'alumni/index'
