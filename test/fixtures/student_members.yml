@@ -5,5 +5,5 @@ student_<%= n+1 %>:
   name: <%= "student#{n+1}" %>
   rollnum: <%= "student#{n+1}" %>
   portfolio: Some portfolio
-  email: <%= "coordintor#{n+1}@g.com" %>
+  email: <%= "studentmember#{n+1}@g.com" %>
 <% end %>
