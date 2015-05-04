@@ -23,6 +23,9 @@
 				<ul class="nav navbar-nav navbar-right">
 					<% if student_member_signed_in? %>
 					<li>
+						<a href="<%= viewall_index_path %>">Viewall</a>
+					</li>
+					<li>
 						<a href="#">Signed in as <%= current_student_member.name %></a>
 					</li>
 					<li>
@@ -32,6 +35,9 @@
 					<% else %>
 
 					<% if coordinator_signed_in? %>
+					<li>
+						<a href="<%= viewall_index_path %>">Viewall</a>
+					</li>
 					<li>
 						<a href="#">Signed in as <%= current_coordinator.name %></a>
 					</li>
