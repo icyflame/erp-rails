@@ -1,1 +1,111 @@
-<h1>Coordinator#index</h1>
+<style>
+thead td:hover{
+	cursor: pointer;
+	background-color: rgb(245,245,245);
+}
+
+thead{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+</style>
+<!-- <h1>Coordinator#index</h1> -->
+<!-- <p>Find me in app/views/coordinator/index.html.erb</p> -->
+<!-- <h3><span class="glyphicon glyphicon-home"></span> <span class="label label-danger">Coordinator</span>  <span class="label label-success"> <%= @coordinator.name %> </span> </h3> -->
+<hr> 
+
+<!-- <div class="col-lg-3">
+	<ul class="list-group">
+		<li class="list-group-item"><b>Name </b><span class="pull-right"><%= @coordinator.name %></span></li>
+		<li class="list-group-item"><b>Portfolio </b><span class="pull-right"><%= @coordinator.portfolio %></span></li>
+		<li class="list-group-item"><b>Roll No </b><span class="pull-right"><%= @coordinator.rollnum %></span></li>
+	</ul>
+</div> -->
+
+<div class="">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well" align="center">
+				<h4>Total Alums <%= Alumni.count %></h4>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well" align="center">
+				<h4>Total student members <%= StudentMember.count %></h4>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="" align="">
+		<% if Alumni.count %>
+		<table id-"alumniTable" class="table table-striped">
+			<thead>
+				<td>Alumni</td>
+				<td>Assigned to</td>
+				<td>Response</td>
+				<td>Search Status</td>
+			</thead>
+			<tbody>
+				<% @allAlums.each do |alumni| %>
+				<tr>
+					<td><%= alumni.name %></td>
+
+					<% stat = AlumniStatus.where({ :Alumni_id => "#{alumni.id}"}) %>
+					<% if stat.length >= 1 %>
+
+					<% stat = stat[0] %>
+					<% searchstate = stat.search %>
+					<% responsestate = stat.response %>
+
+					<% else %>
+
+					<% searchstate = "Not stored" %>
+					<% responsestate = "Not stored" %>
+
+					<% end %>
+
+					<% tie = TieAlumniWithStudentMember.where({ :Alumni_id => "#{alumni.id}" }) %>
+
+					<% if tie.length >= 1 %>
+
+					<% tie = tie[0] %>
+					<% tied = StudentMember.find(tie.StudentMember_id).name %>
+
+					<% else %>
+
+					<% tied = "Not yet assigned" %>
+
+					<% end %>
+
+					<td><%= tied %></td>
+					<td><%= responsestate %></td>
+					<td><%= searchstate %></td>
+					
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<% else %>
+		<h3>Currently, no data available</h3>
+		<% end %>
+	</div>
+	
+	<br>
+	<!-- <div class="row">
+		
+	</div> -->
+</div>
+
+<script>
+$(document).ready(function() 
+  { 
+    $("#alumniTable").tablesorter(); 
+    $("thead td").on("click", function(){
+    	$("thead td").each(function(){
+    		$(this).css("background", "white");
+    	});
+    	$(this).css("background", "lightblue");
+    });
+  } 
+); 
+</script>
