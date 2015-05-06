@@ -42,20 +42,51 @@ thead{
 			<thead>
 				<td>Alumni</td>
 				<td>Assigned to</td>
-				<td>Status</td>
+				<td>Response</td>
+				<td>Search Status</td>
 			</thead>
 			<tbody>
 				<% @allAlums.each do |alumni| %>
 				<tr>
 					<td><%= alumni.name %></td>
+
+					<% stat = AlumniStatus.where({ :Alumni_id => "#{alumni.id}"}) %>
+					<% if stat.length >= 1 %>
+
+					<% stat = stat[0] %>
+					<% searchstate = stat.search %>
+					<% responsestate = stat.response %>
+
+					<% else %>
+
+					<% searchstate = "Not stored" %>
+					<% responsestate = "Not stored" %>
+
+					<% end %>
+
+					<% tie = TieAlumniWithStudentMember.where({ :Alumni_id => "#{alumni.id}" }) %>
+
+					<% if tie.length >= 1 %>
+
+					<% tie = tie[0] %>
+					<% tied = tie.StudentMember_id %>
+
+					<% else %>
+
+					<% tied = "Not yet assigned" %>
+
+					<% end %>
+
+					<td><%= tied %></td>
+					<td><%= responsestate %></td>
+					<td><%= searchstate %></td>
 					
-					<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" }).search %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
 		<% else %>
-		<h3>Currently no data available</h3>
+		<h3>Currently, no data available</h3>
 		<% end %>
 	</div>
 	
