@@ -15,7 +15,7 @@ thead{
 
 <br>
 
-<table id="alumniTable" class="table table-striped">
+<table id="alumniTable" class="display">
 	<thead>
 		<td>id</td>
 		<td>name</td>
@@ -44,15 +44,11 @@ thead{
 
 <script>
 $(document).ready(function() 
-    { 
-        $("#alumniTable").tablesorter(); 
-        $("thead td").on("click", function(){
-        	$("thead td").each(function(){
-        		$(this).css("background", "white");
-        	});
-        	$(this).css("background", "lightblue");
-        });
-    } 
+  { 
+    $("#alumniTable").DataTable({
+    	respnsive: true
+    });
+  }
 ); 
   
 </script>
