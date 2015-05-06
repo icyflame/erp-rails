@@ -69,7 +69,7 @@ thead{
 					<% if tie.length >= 1 %>
 
 					<% tie = tie[0] %>
-					<% tied = tie.StudentMember_id %>
+					<% tied = StudentMember.find(tie.StudentMember_id).name %>
 
 					<% else %>
 
