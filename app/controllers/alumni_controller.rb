@@ -13,7 +13,7 @@ class AlumniController < ApplicationController
 
     if @tie = TieAlumniWithStudentMember.find_by_Alumni_id(@thisID)
       @assignedtoid = @tie.StudentMember_id
-      if @assignedtoid == current_student_member.id
+      if student_member_signed_in? && @assignedtoid == current_student_member.id
         @editingAllowed = true
       end
     else
