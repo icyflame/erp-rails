@@ -4,6 +4,9 @@
 	<title>SAC Internal ERP</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	
+	<script type="text/javascript" charset="utf8" src="/sieve.min.js"></script>
+
 	<%= csrf_meta_tags %>
 
 </head>
@@ -61,6 +64,25 @@
 	</div>
 
 	<%= yield %>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('table').each(function(){
+			$(this).sieve();
+			$(this).tablesorter();
+		});
+
+		$("thead td").on("click", function(){
+			$("thead td").each(function(){
+				$(this).css("background", "white");
+			});
+			$(this).css("background", "lightblue");
+		});
+
+	}); 
+
+	</script>
 
 </body>
 </html>

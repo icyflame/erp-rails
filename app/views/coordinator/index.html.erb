@@ -1,26 +1,4 @@
-<style>
-thead td:hover{
-	cursor: pointer;
-	background-color: rgb(245,245,245);
-}
-
-thead{
-	text-transform: uppercase;
-	font-weight: bold;
-}
-</style>
-<!-- <h1>Coordinator#index</h1> -->
-<!-- <p>Find me in app/views/coordinator/index.html.erb</p> -->
-<!-- <h3><span class="glyphicon glyphicon-home"></span> <span class="label label-danger">Coordinator</span>  <span class="label label-success"> <%= @coordinator.name %> </span> </h3> -->
 <hr> 
-
-<!-- <div class="col-lg-3">
-	<ul class="list-group">
-		<li class="list-group-item"><b>Name </b><span class="pull-right"><%= @coordinator.name %></span></li>
-		<li class="list-group-item"><b>Portfolio </b><span class="pull-right"><%= @coordinator.portfolio %></span></li>
-		<li class="list-group-item"><b>Roll No </b><span class="pull-right"><%= @coordinator.rollnum %></span></li>
-	</ul>
-</div> -->
 
 <div class="">
 	<div class="row">
@@ -38,7 +16,7 @@ thead{
 	<br>
 	<div class="" align="">
 		<% if Alumni.count %>
-		<table id-"alumniTable" class="table table-striped">
+		<table id="alumniTable" class="table table-striped">
 			<thead>
 				<td>Alumni</td>
 				<td>Assigned to</td>
@@ -91,21 +69,4 @@ thead{
 	</div>
 	
 	<br>
-	<!-- <div class="row">
-		
-	</div> -->
 </div>
-
-<script>
-$(document).ready(function() 
-  { 
-    $("#alumniTable").tablesorter(); 
-    $("thead td").on("click", function(){
-    	$("thead td").each(function(){
-    		$(this).css("background", "white");
-    	});
-    	$(this).css("background", "lightblue");
-    });
-  } 
-); 
-</script>
