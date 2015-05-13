@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'viewall/index'
+  get 'viewall/alumni'
+
+  get 'viewall/students'
 
   get 'viewall/show'
 
