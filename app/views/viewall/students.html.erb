@@ -26,12 +26,6 @@
 				<% if allties.length >= 1 %>
 					<% allties.each do |tie| %>
 					<% stat = AlumniStatus.where({ :Alumni_id => "#{tie.Alumni_id}"}) %>
-						<% if stat[0].search == "success" %>
-						<% @searchAdd = @searchAdd + 1 %>
-						<% end %>
-						<% if stat[0].response == "success" %>
-						<% @responseAdd = @responseAdd + 1 %>
-						<% end %>
 
 						<% case stat[0].search %>
 						<% when "ready" %>
@@ -58,6 +52,7 @@
 						<% else %>
 						<% @search = 0 %>
 						<% end %>
+						
 					<% end %>
 				<% else %>
 					<% @searchAdd = 100 %>
