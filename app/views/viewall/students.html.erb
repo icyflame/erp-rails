@@ -1,2 +1,40 @@
-<h1>Viewall#show</h1>
-<p>TODO: by hiten</p>
+<h2 align="center">Complete Student Member Status</h2>
+<hr>
+
+<table class="table table-justified">
+	<thead>
+		<td>id</td>
+		<td>name</td>
+		<td>total alumni alloted</td>
+		<td>response status</td>
+		<td>search status</td>
+	</thead>
+	<tbody>
+		<% @allStudents.each do |student| %>
+		<% @searchAdd = 0 %>
+		<% @responseAdd = 0 %>
+		<tr>
+			<% allties = TieAlumniWithStudentMember.where({ :StudentMember_id => "#{student.id}" }) %>
+				<% if allties.length >= 1 %>
+					<% allties.each do |tie| %>
+					<% stat = AlumniStatus.where({ :Alumni_id => "#{tie.Alumni_id}"}) %>
+						<% if stat[0].search == "tobesearched" %>
+						<% @searchAdd = @searchAdd + stat[0].search.to_i %>
+						<% end %>
+						<% if stat[0].response == "default" %>
+						<% @responseAdd = @responseAdd + stat[0].response.to_i %>
+						<% end %>
+					<% end %>
+				<% else %>
+					<% @searchAdd = 100 %>
+					<% @responseAdd = 100 %>
+				<% end %>
+			<td><%= student.id %></td>
+			<td><%= student.name %></td>
+			<td><%= allties.length %></td>
+			<td><%= @responseAdd %></td>
+			<td><%= @searchAdd %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
