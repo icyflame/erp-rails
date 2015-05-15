@@ -85,6 +85,15 @@ $(document).ready(function(){
 			$(this).addClass("active");
 	});
 
+	// set-response
+
+	$(".setresponse li").each(function(){
+		if($(this).attr("data-val") == "<%= @astat.response %>")
+			$(this).addClass("active");
+	});
+
+	<% if @editingAllowed %>	
+
 	$(".setsearch li").on("click", function(){
 		data = {
 			id: "<%= @alum.id %>",
@@ -98,13 +107,6 @@ $(document).ready(function(){
 		$(this).addClass("active");
 
 		$.post("/alumni/status/search", data);
-	});
-
-	// set-response
-
-	$(".setresponse li").each(function(){
-		if($(this).attr("data-val") == "<%= @astat.response %>")
-			$(this).addClass("active");
 	});
 
 	$(".setresponse li").on("click", function(){
@@ -121,6 +123,14 @@ $(document).ready(function(){
 
 		$.post("/alumni/status/response", data);
 	});
+
+	<% else %>
+
+	$(".setsearch li, .setresponse li").each(function(){
+		$(this).addClass("disabled");
+	})
+
+	<% end %>
 
 
 });
