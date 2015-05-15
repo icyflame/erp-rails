@@ -1,3 +1,9 @@
+<style type="text/css">
+li:hover{
+	cursor: pointer;
+}
+</style>
+
 <h1>Profile page for Alumni ID <%= @thisID %> </h1>
 
 <h3> <%= @alum.name %> </h3>
@@ -6,22 +12,38 @@
 
 <h2> Status Information </h2>
 
-<h3> Search: <%= @astat.search %> </h3>
-<h3> Calling: <%= @astat.response %> </h3>
+<h3> Search: </h3>
+
+<ul class="setsearch nav nav-pills">
+	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
+	<li role="presentation" data-val-integer="1" data-val="found"><a>Found</a></li>
+	<li role="presentation" data-val-integer="2" data-val="tobesearched"><a>To-be-searched</a></li>
+	<li role="presentation" data-val-integer="3" data-val="dumped"><a>Dumped</a></li>
+</ul>
+
+<h3> Calling: </h3>
+
+<ul class="setresponse nav nav-pills">
+	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
+	<li role="presentation" data-val-integer="1" data-val="negative"><a>Negative</a></li>
+	<li role="presentation" data-val-integer="2" data-val="neutral"><a>Neutral</a></li>
+	<li role="presentation" data-val-integer="3" data-val="registered"><a>Registered</a></li>
+	<li role="presentation" data-val-integer="4" data-val="default"><a>Default</a></li>
+</ul>
 
 <h3> 
 
-<% if @assignedtoid > 0 %>
+	<% if @assignedtoid > 0 %>
 
-Assigned to <%= StudentMember.find(@assignedtoid).name %> (ID <%= @assignedtoid %>)
+	Assigned to <%= StudentMember.find(@assignedtoid).name %> (ID <%= @assignedtoid %>)
 
-<% else %>
+	<% else %>
 
-Not assigned to any Student Member. Contact SysAdmin for assigning this Alumni.
+	Not assigned to any Student Member. Contact SysAdmin for assigning this Alumni.
 
-<% end %>
+	<% end %>
 
- </h3>
+</h3>
 
 <%= form_for(@alumni_data) do |f| %>
 
@@ -52,3 +74,54 @@ Not assigned to any Student Member. Contact SysAdmin for assigning this Alumni.
 <%= f.submit %>
 
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	// set-search
+
+	$(".setsearch li").each(function(){
+		if($(this).attr("data-val") == "<%= @astat.search %>")
+			$(this).addClass("active");
+	});
+
+	$(".setsearch li").on("click", function(){
+		data = {
+			id: "<%= @alum.id %>",
+			setsearch: $(this).attr("data-val-integer")
+		};
+
+		$(".setsearch li").each(function(){
+				$(this).removeClass("active");
+		});
+
+		$(this).addClass("active");
+
+		$.post("/alumni/status/search", data);
+	});
+
+	// set-response
+
+	$(".setresponse li").each(function(){
+		if($(this).attr("data-val") == "<%= @astat.response %>")
+			$(this).addClass("active");
+	});
+
+	$(".setresponse li").on("click", function(){
+		data = {
+			id: "<%= @alum.id %>",
+			setresponse: $(this).attr("data-val-integer")
+		};
+
+		$(".setresponse li").each(function(){
+				$(this).removeClass("active");
+		});
+
+		$(this).addClass("active");
+
+		$.post("/alumni/status/response", data);
+	});
+
+
+});
+</script>
