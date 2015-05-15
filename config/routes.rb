@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'alumni_status/updatesearch'
+
+  get 'alumni_status/updateresponse'
+
   get 'viewall/index'
 
   get 'viewall/show'
@@ -27,6 +31,9 @@ Rails.application.routes.draw do
   get '/homepage/coordinator' => 'coordinator#index'
 
   get '/administrator/createallusers' => 'staticpage#createallusers'
+
+  post '/alumni/status/search' => 'alumni_status#updatesearch'
+  post '/alumni/status/response' => 'alumni_status#updateresponse'
 
   root 'routing#index'
   # The priority is based upon order of creation: first created -> highest priority.

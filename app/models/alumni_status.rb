@@ -3,7 +3,7 @@ class AlumniStatus < ActiveRecord::Base
 	enum search: [:ready, :found, :tobesearched, :dumped]
 	enum response: [:positive, :negative, :neutral, :registered, :default]
 
-	after_initialize :init
+	after_create :init
 
 	def init
 	  self.tobesearched!

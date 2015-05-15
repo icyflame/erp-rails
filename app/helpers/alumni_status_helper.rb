@@ -1,0 +1,2 @@
+module AlumniStatusHelper
+end
