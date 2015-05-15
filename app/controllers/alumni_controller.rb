@@ -3,6 +3,11 @@ class AlumniController < ApplicationController
   end
 
   def show
+
+    if not student_member_signed_in? and not coordinator_signed_in?
+      render plain: "You don't have privileges to view this page."
+    end
+
   	@thisID = params[:id]
   	@alum = Alumni.find(@thisID)
   	@astat = AlumniStatus.find_by_Alumni_id(@thisID)
