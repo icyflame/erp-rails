@@ -1,2 +1,82 @@
-<h1>Viewall#show</h1>
-<p>TODO: by hiten</p>
+<h2 align="center">Complete Student Member Status</h2>
+<hr>
+
+<table class="table table-justified">
+	<thead>
+		<td>id</td>
+		<td>name</td>
+		<td>total alumni alloted</td>
+		<td>response status</td>
+		<td>search status</td>
+	</thead>
+	<tbody>
+		<% @allStudents.each do |student| %>
+		<% @searchAdd = 0 %>
+		<% @responseAdd = 0 %>
+		<% @ready = 0 %>
+		<% @found = 0 %>
+		<% @tobesearched = 0 %>
+		<% @dumped = 0 %>
+		<% @positive = 0 %>
+		<% @negative = 0 %>
+		<% @neutral = 0 %>
+		<% @registered = 0 %>
+		<tr>
+			<% allties = TieAlumniWithStudentMember.where({ :StudentMember_id => "#{student.id}" }) %>
+				<% if allties.length >= 1 %>
+					<% allties.each do |tie| %>
+					<% stat = AlumniStatus.where({ :Alumni_id => "#{tie.Alumni_id}"}) %>
+
+						<% case stat[0].search %>
+						<% when "ready" %>
+						<% @ready = @ready + 1 %>
+						<% when "found" %>
+						<% @found = @found + 1 %>
+						<% when "tobesearched" %>
+						<% @tobesearched = @tobesearched + 1 %>
+						<% when "dumped" %>
+						<% @dumped = @dumped + 1 %>
+						<% else %>
+						<% @search = 0 %>
+						<% end %>
+
+						<% case stat[0].response %>
+						<% when "positive" %>
+						<% @positive = @positive + 1 %>
+						<% when "negative" %>
+						<% @negative = @negative + 1 %>
+						<% when "neutral" %>
+						<% @neutral = @neutral + 1 %>
+						<% when "registered" %>
+						<% @registered = @registered + 1 %>
+						<% else %>
+						<% @search = 0 %>
+						<% end %>
+						
+					<% end %>
+				<% else %>
+					<% @searchAdd = 100 %>
+					<% @responseAdd = 100 %>
+				<% end %>
+
+			<td><%= student.id %></td>
+			<td><%= student.name %></td>
+			<td><%= allties.length %></td>
+			<!-- <td><%= @responseAdd %></td> -->
+			<td>
+				<a href="#" class="btn btn-success btn-sm">Positive <span class="badge"> <%= @positive %> </span></a>
+				<a href="#" class="btn btn-danger btn-sm">Negative <span class="badge"> <%= @negative %> </span></a>
+				<a href="#" class="btn btn-info btn-sm">Neutral <span class="badge"> <%= @neutral %> </span></a>
+				<a href="#" class="btn btn-primary btn-sm">Registered <span class="badge"> <%= @registered %> </span></a>
+			</td>
+			<!-- <td><%= @searchAdd %></td> -->
+			<td>
+				<button class="btn btn-primary btn-sm">Ready <span class="badge"> <%= @ready %> </span></button>
+				<button class="btn btn-success btn-sm">Found  <span class="badge"> <%= @found %> </span></button>
+				<button class="btn btn-info btn-sm">Tobesearched <span class="badge"> <%= @tobesearched %> </span></button>
+				<button class="btn btn-danger btn-sm">Dumped <span class="badge"> <%= @dumped %> </span></button>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
