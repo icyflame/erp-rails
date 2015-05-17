@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   get 'alumni_status/updatesearch'
 
   get 'alumni_status/updateresponse'
+  
+	get 'viewall/alumni'
 
-  get 'viewall/index'
+  get 'viewall/students'
 
   get 'viewall/show'
 

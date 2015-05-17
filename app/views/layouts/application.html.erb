@@ -26,7 +26,10 @@
 				<ul class="nav navbar-nav navbar-right">
 					<% if student_member_signed_in? %>
 					<li>
-						<a href="<%= viewall_index_path %>">See complete database</a>
+						<a href="/viewall/alumni">Alumni Database</a>
+					</li>
+					<li>
+						<a href="/viewall/students">Student Member Status</a>
 					</li>
 					<li>
 						<a href="#">Signed in as <%= current_student_member.name %></a>
@@ -39,7 +42,10 @@
 
 					<% if coordinator_signed_in? %>
 					<li>
-						<a href="<%= viewall_index_path %>">See complete database</a>
+						<a href="/viewall/alumni">Alumni Status</a>
+					</li>
+					<li>
+						<a href="/viewall/students">Student Member Status</a>
 					</li>
 					<li>
 						<a href="#">Signed in as <%= current_coordinator.name %></a>
