@@ -7,6 +7,7 @@
 		<td>name</td>
 		<td>department</td>
 		<td>hall</td>
+		<td>assigned to</td>
 		<td>search</td>
 		<td>response</td>
 		<td></td>
@@ -14,10 +15,18 @@
 	<tbody>
 		<% @allAlums.each do |alumni| %>
 		<tr>
+			<% tie = TieAlumniWithStudentMember.where({ :Alumni_id => "#{alumni.id}" }) %>
+			<% if tie.length >= 1 %>
+			<% tie = tie[0] %>
+			<% tied = StudentMember.find(tie.StudentMember_id).name %>
+			<% else %>
+			<% tied = "Not yet assigned" %>
+			<% end %>
 			<td><%= alumni.id %></td>
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
+			<td><%= tied %></td>
 			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].search %></td>
 			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].response %></td>
 			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
