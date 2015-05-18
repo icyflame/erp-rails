@@ -32,7 +32,7 @@
 						<a href="/viewall/students">Student Member Status</a>
 					</li>
 					<li>
-						<a href="#">Signed in as <%= current_student_member.name %></a>
+						<a href="<%= edit_student_member_registration_path %>">Signed in as <%= current_student_member.name %></a>
 					</li>
 					<li>
 						<%= link_to "Signout", destroy_student_member_session_path, method: :delete %>
@@ -48,7 +48,7 @@
 						<a href="/viewall/students">Student Member Status</a>
 					</li>
 					<li>
-						<a href="#">Signed in as <%= current_coordinator.name %></a>
+						<a href="<%= edit_coordinator_registration_path %>">Signed in as <%= current_coordinator.name %></a>
 					</li>
 					<li>
 						<%= link_to "Signout", destroy_coordinator_session_path, method: :delete %>
