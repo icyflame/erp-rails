@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'bills/index'
+
+  get 'bills/add'
+
   get 'alumni_status/updatesearch'
 
   get 'alumni_status/updateresponse'
