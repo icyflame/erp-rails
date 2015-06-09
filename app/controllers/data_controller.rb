@@ -7,9 +7,15 @@ class DataController < ApplicationController
 
 		counter = 0
 
-		CSV.foreach("public/list-assets/list-66.csv") do |row|
+		require('open-uri')
+
+		open('file.csv', 'wb') do |file|
+			file << open(ENV['GIST_DATA_URL']).read
+		end
+
+		CSV.foreach('file.csv') do |row|
+			
 			row[2] = row[2].delete(' ') # remove space from year
-			allRows.push(row)
 
 			a = Alumni.new
 			a.name = row[0]
@@ -20,13 +26,27 @@ class DataController < ApplicationController
 
 			a.department = row[1]
 
-			a.save!
-			allRows.push(row)
 
-			counter += 1
+			counter	+= 1
+
+			if counter < 20
+				next
+			end
+
+			if not a.save!
+				allRows.push(row)
+			end
+
+			if counter > 03
+				break
+			end
 		end
 
 		puts counter
+
+		allRows.push(counter)
+
+		File.delete('file.csv')
 
 		render plain: allRows.inspect()
 
