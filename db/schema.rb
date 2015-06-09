@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609112107) do
+ActiveRecord::Schema.define(version: 20150609161347) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20150609112107) do
   create_table "alumnis", force: true do |t|
     t.string   "name"
     t.string   "year"
-    t.string   "hall"
+    t.string   "hall",       default: "Unknown"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "department"

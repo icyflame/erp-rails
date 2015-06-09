@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'data/addmore'
+
   get 'bills/index'
 
   get 'bills/add'
@@ -37,9 +39,12 @@ Rails.application.routes.draw do
   get '/homepage/coordinator' => 'coordinator#index'
 
   get '/administrator/createallusers' => 'staticpage#createallusers'
+  get 'administrator/addmorealumni' => 'data#addmore'
 
   post '/alumni/status/search' => 'alumni_status#updatesearch'
   post '/alumni/status/response' => 'alumni_status#updateresponse'
+
+
 
   root 'routing#index'
   # The priority is based upon order of creation: first created -> highest priority.
