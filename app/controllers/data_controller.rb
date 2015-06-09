@@ -1,5 +1,11 @@
 class DataController < ApplicationController
 	def addmore
+		
+		if not ((student_member_signed_in? and current_student_member.id == 0) or
+			 (coordinator_signed_in? and current_coordinator.id == 0))
+			render plain: "You don't have access to this page."
+		end
+
 		allRows = Array.new
 
 		# CSV Arrangement
@@ -29,17 +35,17 @@ class DataController < ApplicationController
 
 			counter	+= 1
 
-			if counter < 20
-				next
-			end
+			# if counter < 20
+			# 	next
+			# end
 
 			if not a.save!
 				allRows.push(row)
 			end
 
-			if counter > 03
-				break
-			end
+			# if counter > 30
+			# 	break
+			# end
 		end
 
 		puts counter

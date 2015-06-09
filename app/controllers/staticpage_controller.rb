@@ -27,19 +27,6 @@ class StaticpageController < ApplicationController
 			password: 'password', 
 			password_confirmation: 'password')
 
-		lastid = Alumni.all.count
-
-		for i in 1..10
-			j = lastid + i
-			Alumni.create(
-				id: j.to_s,
-				name: 'Default User ' + i.to_s,
-				year: '201' + i.to_s,
-				hall: 'SH',
-				department: 'alumdep' + i.to_s
-				)
-		end
-
 		render plain: "Done!"
 		
 	end
