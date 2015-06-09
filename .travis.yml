@@ -15,7 +15,6 @@ deploy:
     master: erp-production
     staging: erp-staging-1
   run:
-  - rake db:reset
   - rake db:migrate
   - restart
 notifications:
