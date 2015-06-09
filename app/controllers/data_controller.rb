@@ -4,6 +4,7 @@ class DataController < ApplicationController
 		if not ((student_member_signed_in? and current_student_member.id == 0) or
 			 (coordinator_signed_in? and current_coordinator.id == 0))
 			render plain: "You don't have access to this page."
+			return
 		end
 
 		allRows = Array.new
