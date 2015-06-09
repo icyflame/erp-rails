@@ -50,13 +50,13 @@ li:hover{
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
-<% if key < 2 or key >= AlumniData.column_names.length - 2 %>
+<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" %>
 
 <% next %>
 
 <% end %>
 
-<%= label_tag attribute.humanize %>
+<%= label_tag attribute %>
 
 <% if @editingAllowed %>
 
