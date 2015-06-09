@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521221220) do
+ActiveRecord::Schema.define(version: 20150609112107) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20150521221220) do
     t.string   "mobile_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email1"
+    t.string   "email2"
   end
 
   add_index "alumni_data", ["Alumni_id"], name: "index_alumni_data_on_Alumni_id"
