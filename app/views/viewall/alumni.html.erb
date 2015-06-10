@@ -8,6 +8,7 @@
 		<td>department</td>
 		<td>hall</td>
 		<td>assigned to</td>
+		<td>call next at</td>
 		<td>search</td>
 		<td>response</td>
 		<td></td>
@@ -27,6 +28,7 @@
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
 			<td><%= tied %></td>
+			<td><%= AlumniData.where({ :Alumni_id => "#{alumni.id}"})[0].call_next_at %></td>
 			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].search %></td>
 			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].response %></td>
 			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
