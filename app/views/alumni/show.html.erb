@@ -136,8 +136,9 @@ $(document).ready(function(){
 	// Expected: yyyy-mm-dd hh:mm
 
 	$("form").on("submit", function(e){
-		if($("#alumni_data_call_next_at").val().toString().match(/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/g) != null)
-			if($("#alumni_data_call_next_at").val().toString().length != 16 ){
+		if(!$("#alumni_data_call_next_at").val().toString().match(/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/g)
+			||
+			$("#alumni_data_call_next_at").val().toString().length != 16 ){
 				alert("The call next at field must obey yyyy-mm-dd hh:mm");
 				e.preventDefault();
 			}
