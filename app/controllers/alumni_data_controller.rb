@@ -7,17 +7,21 @@ class AlumniDataController < ApplicationController
 					@alumni_data = AlumniData.find(params[:id])
 
 					if @alumni_data.update(alumni_data_params)
-						render plain: "Update has been completed."			
+						render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
+						return
 					else
-						render "Update could not be completed."
+						render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
+						return
 					end
 					# render plain: "This studmem has permissions to edit the Alumni."
 
 				else
-					render plain: "You do not have permissions to edit the Alumni."
+					render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+					return	
 				end
 			else
-				render plain: "You do not have permissions to edit the Alumni."
+				render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+				return
 			end
 		end		
 	end
