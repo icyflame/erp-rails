@@ -46,7 +46,8 @@ li:hover{
 
 <%= form_for(@alumni_data) do |f| %>
 
-<%= text_field_tag "id", @alumni_data.id.to_s, type: 'hidden' %>
+<%= text_field_tag "alum_id", @alumni_data.id.to_s, type: 'hidden' %>
+<%= text_field_tag "student_id", current_student_member.id, type: 'hidden' %>
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
