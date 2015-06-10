@@ -5,7 +5,8 @@ class AlumniController < ApplicationController
   def show
 
     if not student_member_signed_in? and not coordinator_signed_in?
-      render plain: "You don't have privileges to view this page."
+      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+      return
     end
 
   	@thisID = params[:id]

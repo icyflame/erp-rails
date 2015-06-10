@@ -31,7 +31,8 @@ class StaticpageController < ApplicationController
 			password: ENV['ADMIN_USER_PASSWORD'], 
 			password_confirmation: ENV['ADMIN_USER_PASSWORD'])
 
-		render plain: "Done!"
+		render(:file => File.join(Rails.root, 'public/201.html'), :status => 201, :layout => false)
+    return
 		
 	end
 end

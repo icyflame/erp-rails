@@ -1,16 +1,15 @@
 class DataController < ApplicationController
-	def addmore
-		
-		if not ((student_member_signed_in? and current_student_member.id == 0) or
-			 (coordinator_signed_in? and current_coordinator.id == 0))
-			render plain: "You don't have access to this page."
-			return
-		end
+	# CSV Arrangement
+		# Name Dept Year Hall
+
+		def addmore
+			if not ((student_member_signed_in? and current_student_member.id == 0) or
+				(coordinator_signed_in? and current_coordinator.id == 0))
+				render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+				return
+			end
 
 		allRows = Array.new
-
-		# CSV Arrangement
-		# Name Dept Year Hall
 
 		counter = 0
 
