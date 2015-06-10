@@ -1,27 +1,29 @@
 class AlumniDataController < ApplicationController
 	def update
 		if student_member_signed_in?
-			if @tie = TieAlumniWithStudentMember.find_by_StudentMember_id(current_student_member.id)
-				if params[:id].to_i == @tie.Alumni_id
-					
-					@alumni_data = AlumniData.find(params[:id])
+			if @tie = TieAlumniWithStudentMember.where({StudentMember_id: current_student_member.id, Alumni_id: params[:alum_id]})
 
-					if @alumni_data.update(alumni_data_params)
-						render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
-						return
-					else
-						render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
-						return
-					end
-					# render plain: "This studmem has permissions to edit the Alumni."
+				# render plain: @tie.inspect
+				# return
+				# assert_equal @tie.Alumni_id.to_i, params[:id].to_i
 
+				@alumni_data = AlumniData.find(params[:alum_id])
+
+				if @alumni_data.update(alumni_data_params)
+					render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
+					return
 				else
-					render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-					return	
+					puts "Found TIE Object, but couldn't update in DB"
+					render(:file => File.join(Rails.root, 'public/500.html'), :status => 500, :layout => false)
+					return
 				end
+
 			else
+
+				puts "Allotted to someone else"
 				render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-				return
+				return	
+
 			end
 		end		
 	end
