@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  Alumni_id: 
-  StudentMember_id: 
+  alumni_id: 
+  studentmember_id: 
 
 two:
-  Alumni_id: 
-  StudentMember_id: 
+  alumni_id: 
+  studentmember_id: 

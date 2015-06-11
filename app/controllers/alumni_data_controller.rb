@@ -1,11 +1,11 @@
 class AlumniDataController < ApplicationController
 	def update
 		if student_member_signed_in?
-			if @tie = TieAlumniWithStudentMember.where({StudentMember_id: current_student_member.id, Alumni_id: params[:alum_id]})
+			if @tie = TieAlumniWithStudentMember.where({studentmember_id: current_student_member.id, alumni_id: params[:alum_id]})
 
 				# render plain: @tie.inspect
 				# return
-				# assert_equal @tie.Alumni_id.to_i, params[:id].to_i
+				# assert_equal @tie.alumni_id.to_i, params[:id].to_i
 
 				@alumni_data = AlumniData.find(params[:alum_id])
 

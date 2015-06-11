@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610085118) do
+ActiveRecord::Schema.define(version: 20150611172333) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150610085118) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "alumni_data", force: true do |t|
-    t.integer  "Alumni_id"
+    t.integer  "alumni_id"
     t.string   "company"
     t.string   "designation"
     t.string   "home_address"
@@ -62,17 +62,17 @@ ActiveRecord::Schema.define(version: 20150610085118) do
     t.string   "call_next_at",   default: "2016-01-23 09:00"
   end
 
-  add_index "alumni_data", ["Alumni_id"], name: "index_alumni_data_on_Alumni_id"
+  add_index "alumni_data", ["alumni_id"], name: "index_alumni_data_on_alumni_id"
 
   create_table "alumni_statuses", force: true do |t|
-    t.integer  "Alumni_id"
+    t.integer  "alumni_id"
     t.integer  "search"
     t.integer  "response"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "alumni_statuses", ["Alumni_id"], name: "index_alumni_statuses_on_Alumni_id"
+  add_index "alumni_statuses", ["alumni_id"], name: "index_alumni_statuses_on_alumni_id"
 
   create_table "alumnis", force: true do |t|
     t.string   "name"
@@ -139,13 +139,13 @@ ActiveRecord::Schema.define(version: 20150610085118) do
   add_index "student_members", ["reset_password_token"], name: "index_student_members_on_reset_password_token", unique: true
 
   create_table "tie_alumni_with_student_members", force: true do |t|
-    t.integer  "Alumni_id"
-    t.integer  "StudentMember_id"
+    t.integer  "alumni_id"
+    t.integer  "studentmember_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tie_alumni_with_student_members", ["Alumni_id"], name: "index_tie_alumni_with_student_members_on_Alumni_id"
-  add_index "tie_alumni_with_student_members", ["StudentMember_id"], name: "index_tie_alumni_with_student_members_on_StudentMember_id"
+  add_index "tie_alumni_with_student_members", ["alumni_id"], name: "index_tie_alumni_with_student_members_on_alumni_id"
+  add_index "tie_alumni_with_student_members", ["studentmember_id"], name: "index_tie_alumni_with_student_members_on_studentMember_id"
 
 end

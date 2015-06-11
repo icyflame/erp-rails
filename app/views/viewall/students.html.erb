@@ -22,10 +22,10 @@
 		<% @neutral = 0 %>
 		<% @registered = 0 %>
 		<tr>
-			<% allties = TieAlumniWithStudentMember.where({ :StudentMember_id => "#{student.id}" }) %>
+			<% allties = TieAlumniWithStudentMember.where({ :studentmember_id => "#{student.id}" }) %>
 				<% if allties.length >= 1 %>
 					<% allties.each do |tie| %>
-					<% stat = AlumniStatus.where({ :Alumni_id => "#{tie.Alumni_id}"}) %>
+					<% stat = AlumniStatus.where({ :alumni_id => "#{tie.alumni_id}"}) %>
 
 						<% case stat[0].search %>
 						<% when "ready" %>
