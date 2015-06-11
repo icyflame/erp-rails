@@ -15,19 +15,20 @@ li:hover{
 <h3> Search: </h3>
 
 <ul class="setsearch nav nav-pills">
-	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
-	<li role="presentation" data-val-integer="1" data-val="found"><a>Found</a></li>
-	<li role="presentation" data-val-integer="2" data-val="tobesearched"><a>To-be-searched</a></li>
 	<li role="presentation" data-val-integer="3" data-val="dumped"><a>Dumped</a></li>
+	<li role="presentation" data-val-integer="2" data-val="tobesearched"><a>To-be-searched</a></li>
+	<li role="presentation" data-val-integer="1" data-val="found"><a>Found</a></li>
+	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
 </ul>
 
 <h3> Calling: </h3>
 
 <ul class="setresponse nav nav-pills">
-	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
 	<li role="presentation" data-val-integer="1" data-val="negative"><a>Negative</a></li>
 	<li role="presentation" data-val-integer="2" data-val="neutral"><a>Neutral</a></li>
+	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
 	<li role="presentation" data-val-integer="3" data-val="registered"><a>Registered</a></li>
+	<li role="presentation" data-val-integer="4" data-val="paid"><a>Paid</a></li>
 </ul>
 
 <h3> 
@@ -46,8 +47,12 @@ li:hover{
 
 <%= form_for(@alumni_data) do |f| %>
 
+<% if @editingAllowed %>
+
 <%= text_field_tag "alum_id", @alumni_data.id.to_s, type: 'hidden' %>
 <%= text_field_tag "student_id", current_student_member.id, type: 'hidden' %>
+
+<% end %>
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
@@ -77,6 +82,9 @@ li:hover{
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	alert("<%= @astat.response %>");
+	alert("<%= @astat.search %>");
 
 	// set-search
 
