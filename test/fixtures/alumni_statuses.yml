@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  Alumni_id: 
+  alumni_id: 
   search: 1
   response: 1
 
 two:
-  Alumni_id: 
+  alumni_id: 
   search: 1
   response: 1

@@ -16,7 +16,7 @@
 	<tbody>
 		<% @allAlums.each do |alumni| %>
 		<tr>
-			<% tied = StudentMember.find(alumni.StudentMember_id).name %>
+			<% tied = StudentMember.find(alumni.studentmember_id).name %>
 			<td><%= alumni.id %></td>
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>

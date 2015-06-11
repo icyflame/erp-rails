@@ -7,15 +7,15 @@ class StudentMemberController < ApplicationController
 		# record.
     @thisID = current_student_member.id
 
-    @allties = TieAlumniWithStudentMember.where({ :StudentMember_id => "#{current_student_member.id}" })
+    @allties = TieAlumniWithStudentMember.where({ :studentmember_id => "#{current_student_member.id}" })
 
-    # @allties = TieAlumniWithStudentMember.where(" \"StudentMember_id\" = #{current_student_member.id}")
+    # @allties = TieAlumniWithStudentMember.where(" \"studentmember_id\" = #{current_student_member.id}")
 
     @allalums = Array.new
 
     @allties.each do |this_tie|
 
-      @allalums.push(Alumni.find(this_tie.Alumni_id))
+      @allalums.push(Alumni.find(this_tie.alumni_id))
       
     end
 

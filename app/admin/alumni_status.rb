@@ -1,5 +1,5 @@
 ActiveAdmin.register AlumniStatus do
-  permit_params :Alumni_id
+  permit_params :alumni_id
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
