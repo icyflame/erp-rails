@@ -10,10 +10,11 @@ class AlumniController < ApplicationController
     end
 
   	@thisID = params[:id]
-  	@alum = Alumni.find(@thisID)
-  	@astat = AlumniStatus.find_by_alumni_id(@thisID)
+    @alum = Alumni.select("*").joins(:AlumniData, :AlumniStatus, :TieAlumniWithStudentMember).find(@thisID)
+  	# @alum = Alumni.find(@thisID)
+  	# @astat = AlumniStatus.find_by_alumni_id(@thisID)
 
-  	@alumni_data = AlumniData.find_by_alumni_id(@thisID)
+  	# @alumni_data = AlumniData.find_by_alumni_id(@thisID)
     @editingAllowed = false
     @assignedtoid = -1
 

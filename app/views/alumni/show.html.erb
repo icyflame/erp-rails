@@ -21,7 +21,7 @@ li:hover{
 	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
 </ul>
 
-<% if @astat.response == "verified" %>
+<% if @alum.response == "verified" %>
 
 <h3 class="alert alert-success">Payment verified</h3>
 
@@ -70,18 +70,26 @@ li:hover{
 
 </h3>
 
-<%= form_for(@alumni_data) do |f| %>
+<%= form_for(@alum) do |f| %>
 
 <% if @editingAllowed %>
 
-<%= text_field_tag "alum_id", @alumni_data.id.to_s, type: 'hidden' %>
+<%= text_field_tag "alum_id", @alum.id.to_s, type: 'hidden' %>
 <%= text_field_tag "student_id", current_student_member.id, type: 'hidden' %>
 
 <% end %>
 
-<% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
+<% temp = AlumniData.new %>
 
-<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" %>
+<% @alum.attributes.keys.each_with_index do |attribute, key| %>
+
+<% if not temp.attributes.keys.to_a.find_index(attribute) %>
+
+<% next %>
+
+<% end %>
+
+<% if key < 2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" or attribute.humanize.include? "Alumni" %>
 
 <% next %>
 
@@ -91,11 +99,11 @@ li:hover{
 
 <% if @editingAllowed %>
 
-<%= text_field_tag "alumni_data[" + attribute + "]", @alumni_data.attributes[attribute].to_s %>
+<%= text_field_tag "alumni_data[" + attribute + "]", @alum.attributes[attribute].to_s %>
 
 <% else %>
 
-<%= text_field_tag "alumni_data[" + attribute + "]", @alumni_data.attributes[attribute].to_s, disabled: 'disabled' %>
+<%= text_field_tag "alumni_data[" + attribute + "]", @alum.attributes[attribute].to_s, disabled: 'disabled' %>
 
 <% end %>
 
@@ -110,12 +118,12 @@ li:hover{
 <script type="text/javascript">
 $(document).ready(function(){
 
-	$(".setsearch li[data-val=<%= @astat.search%>]").addClass("active");
-	$(".setresponse li[data-val=<%= @astat.response%>]").addClass("active");
+	$(".setsearch li[data-val-integer=<%= @alum.search%>]").addClass("active");
+	$(".setresponse li[data-val-integer=<%= @alum.response%>]").addClass("active");
 
-	if("<%= @astat.response %>" === "paid" || "<%= @astat.response %>" === "verified"){
+	if("<%= @alum.response %>" === "paid" || "<%= @alum.response %>" === "verified"){
 
-		var string = "<%= @alumni_data.attributes['payment_details'].to_s %>";
+		var string = "<%= @alum.attributes['payment_details'].to_s %>";
 
 		string = string.replace(/&quot;/g, '"');
 
