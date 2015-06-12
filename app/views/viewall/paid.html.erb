@@ -16,7 +16,7 @@
 	<tbody>
 		<% @allAlums.each do |alumni| %>
 		<tr>
-			<% tie = TieAlumniWithStudentMember.where({ :Alumni_id => "#{alumni.id}" }) %>
+			<% tie = TieAlumniWithStudentMember.where({ :alumni_id => "#{alumni.id}" }) %>
 			<% if tie.length >= 1 %>
 			<% tie = tie[0] %>
 			<% tied = StudentMember.find(tie.studentmember_id).name %>
@@ -28,9 +28,9 @@
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
 			<td><%= tied %></td>
-			<td><%= AlumniData.where({ :Alumni_id => "#{alumni.id}"})[0].call_next_at %></td>
-			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].search %></td>
-			<td><%= AlumniStatus.where({ :Alumni_id => "#{alumni.id}" })[0].response %></td>
+			<td><%= AlumniData.where({ :alumni_id => "#{alumni.id}"})[0].call_next_at %></td>
+			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].search %></td>
+			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].response %></td>
 			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
 		</tr>
 		<% end %>
