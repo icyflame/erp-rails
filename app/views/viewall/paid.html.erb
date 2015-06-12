@@ -19,7 +19,7 @@
 			<% tie = TieAlumniWithStudentMember.where({ :Alumni_id => "#{alumni.id}" }) %>
 			<% if tie.length >= 1 %>
 			<% tie = tie[0] %>
-			<% tied = StudentMember.find(tie.StudentMember_id).name %>
+			<% tied = StudentMember.find(tie.studentmember_id).name %>
 			<% else %>
 			<% tied = "Not yet assigned" %>
 			<% end %>
