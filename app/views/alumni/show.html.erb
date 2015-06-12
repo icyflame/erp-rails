@@ -31,6 +31,14 @@ li:hover{
 	<li role="presentation" data-val-integer="4" data-val="paid"><a>Paid</a></li>
 </ul>
 
+<div id="payment_details_div">
+<h3>Payment Details</h3>
+<p id="mode">Mode: </p>
+<p id="refnum">Reference Number: </p>
+<p id="date">Date: </p>
+<p id="amount">Amount: </p>
+</div>
+
 <h3> 
 
 	<% if @assignedtoid > 0 %>
@@ -56,7 +64,7 @@ li:hover{
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
-<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" %>
+<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" or attribute.humanize.include? "Payment" %>
 
 <% next %>
 
@@ -87,6 +95,29 @@ $(document).ready(function(){
 
 	$(".setsearch li[data-val=<%= @astat.search%>]").addClass("active");
 	$(".setresponse li[data-val=<%= @astat.response%>]").addClass("active");
+
+	if("<%= @astat.response%>" === "paid"){
+
+		var string = "<%= @alumni_data.attributes['payment_details'].to_s %>";
+
+		string = string.replace(/&quot;/g, '"');
+
+		// console.log(string);
+
+		paymentData = $.parseJSON(string);
+
+		for(var key in paymentData){
+			console.log(key);
+			console.log(paymentData[key]);
+
+			$("p#" + key).html($("p#" + key).html() + "<b>" + paymentData[key] + "</b>");
+		}
+
+		// console.log(paymentData);
+	}
+	else{
+		$("#payment_details_div").css("display", "none");		
+	}
 
 	<% if @editingAllowed %>	
 
@@ -151,8 +182,6 @@ $(document).ready(function(){
 });
 
 	// validate the payment details field
-
-	// $("#alumni_data_payment_details").attr("disabled", "disabled");
 
 	getJSON = function(selector){
 		data = new Object();
