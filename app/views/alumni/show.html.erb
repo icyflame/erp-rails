@@ -113,7 +113,7 @@ $(document).ready(function(){
 	$(".setsearch li[data-val=<%= @astat.search%>]").addClass("active");
 	$(".setresponse li[data-val=<%= @astat.response%>]").addClass("active");
 
-	if("<%= @astat.response%>" === "paid"){
+	if("<%= @astat.response %>" === "paid" || "<%= @astat.response %>" === "verified"){
 
 		var string = "<%= @alumni_data.attributes['payment_details'].to_s %>";
 
