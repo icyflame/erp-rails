@@ -37,6 +37,9 @@ li:hover{
 <p id="refnum">Reference Number: </p>
 <p id="date">Date: </p>
 <p id="amount">Amount: </p>
+<p id="bank">Bank: </p>
+<p id="branch">Branch: </p>
+<p id="others">Others: </p>
 </div>
 
 <h3> 
@@ -64,7 +67,7 @@ li:hover{
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
-<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" or attribute.humanize.include? "Payment" %>
+<% if key<2 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" %>
 
 <% next %>
 
@@ -183,9 +186,14 @@ $(document).ready(function(){
 
 	// validate the payment details field
 
+	$("#alumni_data_payment_details").css("display", "none");
+	$("label[for=payment_details]").css("display", "none");
+
 	getJSON = function(selector){
 		data = new Object();
 		arr = $(selector).serializeArray();
+		console.log(arr);
+		console.log(selector);
 		for(var i=0; i<arr.length; ++i ){
 			data[arr[i].name] = arr[i].value;
 		}
@@ -193,8 +201,8 @@ $(document).ready(function(){
 	};
 
 	$("#payment_details_form").on("submit", function(e){
-		console.log(getJSON());
-		form_data = getJSON("form#payment_details_form");
+		console.log(getJSON("#payment_details_form"));
+		form_data = getJSON("#payment_details_form");
 		$("#alumni_data_payment_details").val(JSON.stringify(form_data));
 
 		$("#payment_details_modal").modal("hide");
