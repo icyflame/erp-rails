@@ -15,20 +15,46 @@ li:hover{
 <h3> Search: </h3>
 
 <ul class="setsearch nav nav-pills">
-	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
-	<li role="presentation" data-val-integer="1" data-val="found"><a>Found</a></li>
-	<li role="presentation" data-val-integer="2" data-val="tobesearched"><a>To-be-searched</a></li>
 	<li role="presentation" data-val-integer="3" data-val="dumped"><a>Dumped</a></li>
+	<li role="presentation" data-val-integer="2" data-val="tobesearched"><a>To-be-searched</a></li>
+	<li role="presentation" data-val-integer="1" data-val="found"><a>Found</a></li>
+	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
 </ul>
+
+<% if @astat.response == "verified" %>
+
+<h3 class="alert alert-success">Payment verified</h3>
+
+<% else %>
 
 <h3> Calling: </h3>
 
 <ul class="setresponse nav nav-pills">
-	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
+
 	<li role="presentation" data-val-integer="1" data-val="negative"><a>Negative</a></li>
 	<li role="presentation" data-val-integer="2" data-val="neutral"><a>Neutral</a></li>
+	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
 	<li role="presentation" data-val-integer="3" data-val="registered"><a>Registered</a></li>
+	<li role="presentation" data-val-integer="4" data-val="paid"><a>Paid</a></li>
+
+	<% if coordinator_signed_in? %>
+	<li role="presentation" data-val-integer="5" data-val="verified"><a>Verify payment</a></li>
+	<% end %>
+
 </ul>
+
+<% end %>
+
+<div id="payment_details_div">
+	<h3>Payment Details</h3>
+	<p id="mode">Mode: </p>
+	<p id="refnum">Reference Number: </p>
+	<p id="date">Date: </p>
+	<p id="amount">Amount: </p>
+	<p id="bank">Bank: </p>
+	<p id="branch">Branch: </p>
+	<p id="others">Others: </p>
+</div>
 
 <h3> 
 
@@ -46,8 +72,12 @@ li:hover{
 
 <%= form_for(@alumni_data) do |f| %>
 
+<% if @editingAllowed %>
+
 <%= text_field_tag "alum_id", @alumni_data.id.to_s, type: 'hidden' %>
 <%= text_field_tag "student_id", current_student_member.id, type: 'hidden' %>
+
+<% end %>
 
 <% @alumni_data.attributes.keys.each_with_index do |attribute, key| %>
 
@@ -75,22 +105,38 @@ li:hover{
 
 <% end %>
 
+<%= render "partials/paymentmodal" %>
+
 <script type="text/javascript">
 $(document).ready(function(){
 
-	// set-search
+	$(".setsearch li[data-val=<%= @astat.search%>]").addClass("active");
+	$(".setresponse li[data-val=<%= @astat.response%>]").addClass("active");
 
-	$(".setsearch li").each(function(){
-		if($(this).attr("data-val") == "<%= @astat.search %>")
-			$(this).addClass("active");
-	});
+	if("<%= @astat.response %>" === "paid" || "<%= @astat.response %>" === "verified"){
 
-	// set-response
+		var string = "<%= @alumni_data.attributes['payment_details'].to_s %>";
 
-	$(".setresponse li").each(function(){
-		if($(this).attr("data-val") == "<%= @astat.response %>")
-			$(this).addClass("active");
-	});
+		string = string.replace(/&quot;/g, '"');
+
+		// console.log(string);
+
+		paymentData = $.parseJSON(string);
+
+		for(var key in paymentData){
+			console.log(key);
+			console.log(paymentData[key]);
+
+			$("p#" + key).html($("p#" + key).html() + "<b>" + paymentData[key] + "</b>");
+		}
+
+		// console.log(paymentData);
+	}
+	else{
+		$("#payment_details_div").css("display", "none");		
+	}
+
+	console.log("<%= @editingAllowed %>");
 
 	<% if @editingAllowed %>	
 
@@ -115,20 +161,53 @@ $(document).ready(function(){
 			setresponse: $(this).attr("data-val-integer")
 		};
 
-		$(".setresponse li").each(function(){
-			$(this).removeClass("active");
-		});
+		if(data.setresponse == 4){
+			$("#payment_details_modal").modal('show');
+		}
 
-		$(this).addClass("active");
+		else{
 
-		$.post("/alumni/status/response", data);
+			$(".setresponse li").each(function(){
+				$(this).removeClass("active");
+			});
+
+			$(this).addClass("active");
+
+			$.post("/alumni/status/response", data);
+		}
 	});
 
 	<% else %>
 
 	$(".setsearch li, .setresponse li").each(function(){
 		$(this).addClass("disabled");
-	})
+	});
+
+	<% end %>
+
+	<% if coordinator_signed_in? %>
+
+	$(".setresponse li[data-val=verified]").removeClass("disabled");
+
+	$(".setresponse li").on("click", function(){
+		data = {
+			id: "<%= @alum.id %>",
+			setresponse: $(this).attr("data-val-integer")
+		};
+
+		// coordinator can only change the status to verified.
+		// other statuses are blocked for coordinators.
+
+		if($(this).attr("data-val-integer") == "5"){
+			$(".setresponse li").each(function(){
+				$(this).removeClass("active");
+			});
+
+			$(this).addClass("active");
+
+			$.post("/alumni/status/response", data);
+		}
+	});
 
 	<% end %>
 
@@ -139,13 +218,54 @@ $(document).ready(function(){
 		if(!$("#alumni_data_call_next_at").val().toString().match(/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/g)
 			||
 			$("#alumni_data_call_next_at").val().toString().length != 16 ){
-				alert("The call next at field must obey yyyy-mm-dd hh:mm");
-				e.preventDefault();
-			}
+			alert("The call next at field must obey yyyy-mm-dd hh:mm");
+		e.preventDefault();
+	}
 
-			console.log($("#alumni_data_call_next_at").val().toString().length <= 16);
+	console.log($("#alumni_data_call_next_at").val().toString().length <= 16);
 
+});
+
+	// validate the payment details field
+
+	$("#alumni_data_payment_details").css("display", "none");
+	$("label[for=payment_details]").css("display", "none");
+
+	getJSON = function(selector){
+		data = new Object();
+		arr = $(selector).serializeArray();
+		console.log(arr);
+		console.log(selector);
+		for(var i=0; i<arr.length; ++i ){
+			data[arr[i].name] = arr[i].value;
+		}
+		return data;
+	};
+
+	$("#payment_details_form").on("submit", function(e){
+		console.log(getJSON("#payment_details_form"));
+		form_data = getJSON("#payment_details_form");
+		$("#alumni_data_payment_details").val(JSON.stringify(form_data));
+
+		$("#payment_details_modal").modal("hide");
+
+		$(".setresponse li").each(function(){
+			$(this).removeClass("active");
 		});
+
+		$("[data-val=paid]").addClass("active");
+
+		data = {
+			id: "<%= @alum.id %>",
+			setresponse: 4
+		};
+
+		$.post("/alumni/status/response", data);
+
+		e.preventDefault();
+
+		$("form.edit_alumni_data").submit();
+	});
 
 });
 </script>
