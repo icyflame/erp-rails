@@ -72,6 +72,22 @@
 	<%= yield %>
 
 	<script type="text/javascript">
+	function getParam(functionArg){
+		var getParams = window.location.search.substring(1);
+
+		var arr = getParams.split("&");
+
+		for(var i=0; i<arr.length; i+=1){
+			var temp = arr[i];
+			var t2 = temp.split("=");
+
+			if (t2[0] == functionArg)
+
+				return t2[1];
+
+		}
+	};
+
 	$(document).ready(function() {
 
 		$('table').each(function(){
@@ -85,6 +101,13 @@
 			});
 			$(this).css("background", "lightblue");
 		});
+
+		if(getParam("search")){
+			$("div label input[type=text]").addClass("search-field");
+			var elem = $(".search-field");
+			elem.val(getParam("search"));
+			elem.trigger("change");
+		}
 
 	}); 
 
