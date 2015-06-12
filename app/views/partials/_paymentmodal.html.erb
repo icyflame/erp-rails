@@ -9,7 +9,7 @@
 
         <form id="payment_details_form" action="/" method="GET">
 
-          Mode: 
+          Mode: *
 
           <select name="mode" class="form-control">
             <option value="DD">DD</option>
@@ -17,10 +17,13 @@
             <option value="NB">Net Banking</option>
           </select>
           <br>
-          Reference number: <input type="text" name="refnum" minlength="4" required>
+          Reference number: * <input type="text" name="refnum" minlength="4" required>
           <br>
-          Date of payment (yyyy-mm-dd): <input type="date" name="date" required> <br>
-          Amount paid: <input type="number" name="amount" min="100" required> <br>
+          Date of payment (yyyy-mm-dd): * <input type="date" name="date" required> <br>
+          Amount paid: * <input type="number" name="amount" min="100" required> <br>
+          Bank: * <input type="text" name="bank" required> <br>
+          Branch (optional): <input type="text" name="branch"> <br>
+          Other details (optional): <input type="text" name="others"> <br>
 
           <input type="submit">
 
