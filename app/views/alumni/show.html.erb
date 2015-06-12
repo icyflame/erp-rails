@@ -21,25 +21,39 @@ li:hover{
 	<li role="presentation" data-val-integer="0" data-val="ready"><a>Ready</a></li>
 </ul>
 
+<% if @astat.response == "verified" %>
+
+<h3 class="alert alert-success">Payment verified</h3>
+
+<% else %>
+
 <h3> Calling: </h3>
 
 <ul class="setresponse nav nav-pills">
+
 	<li role="presentation" data-val-integer="1" data-val="negative"><a>Negative</a></li>
 	<li role="presentation" data-val-integer="2" data-val="neutral"><a>Neutral</a></li>
 	<li role="presentation" data-val-integer="0" data-val="positive"><a>Positive</a></li>
 	<li role="presentation" data-val-integer="3" data-val="registered"><a>Registered</a></li>
 	<li role="presentation" data-val-integer="4" data-val="paid"><a>Paid</a></li>
+
+	<% if coordinator_signed_in? %>
+	<li role="presentation" data-val-integer="5" data-val="verified"><a>Verify payment</a></li>
+	<% end %>
+
 </ul>
 
+<% end %>
+
 <div id="payment_details_div">
-<h3>Payment Details</h3>
-<p id="mode">Mode: </p>
-<p id="refnum">Reference Number: </p>
-<p id="date">Date: </p>
-<p id="amount">Amount: </p>
-<p id="bank">Bank: </p>
-<p id="branch">Branch: </p>
-<p id="others">Others: </p>
+	<h3>Payment Details</h3>
+	<p id="mode">Mode: </p>
+	<p id="refnum">Reference Number: </p>
+	<p id="date">Date: </p>
+	<p id="amount">Amount: </p>
+	<p id="bank">Bank: </p>
+	<p id="branch">Branch: </p>
+	<p id="others">Others: </p>
 </div>
 
 <h3> 
@@ -122,6 +136,8 @@ $(document).ready(function(){
 		$("#payment_details_div").css("display", "none");		
 	}
 
+	console.log("<%= @editingAllowed %>");
+
 	<% if @editingAllowed %>	
 
 	$(".setsearch li").on("click", function(){
@@ -165,7 +181,33 @@ $(document).ready(function(){
 
 	$(".setsearch li, .setresponse li").each(function(){
 		$(this).addClass("disabled");
-	})
+	});
+
+	<% end %>
+
+	<% if coordinator_signed_in? %>
+
+	$(".setresponse li[data-val=verified]").removeClass("disabled");
+
+	$(".setresponse li").on("click", function(){
+		data = {
+			id: "<%= @alum.id %>",
+			setresponse: $(this).attr("data-val-integer")
+		};
+
+		// coordinator can only change the status to verified.
+		// other statuses are blocked for coordinators.
+
+		if($(this).attr("data-val-integer") == "5"){
+			$(".setresponse li").each(function(){
+				$(this).removeClass("active");
+			});
+
+			$(this).addClass("active");
+
+			$.post("/alumni/status/response", data);
+		}
+	});
 
 	<% end %>
 
