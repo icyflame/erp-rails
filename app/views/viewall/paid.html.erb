@@ -1,0 +1,40 @@
+<h2 align="center">All alumni with unverified payments</h2>
+<hr>
+
+<table id="viewallController" class="table table-justified">
+	<thead>
+		<td>id</td>
+		<td>name</td>
+		<td>department</td>
+		<td>hall</td>
+		<td>assigned to</td>
+		<td>call next at</td>
+		<td>search</td>
+		<td>response</td>
+		<td></td>
+	</thead>
+	<tbody>
+		<% @allAlums.each do |alumni| %>
+		<tr>
+			<% tie = TieAlumniWithStudentMember.where({ :alumni_id => "#{alumni.id}" }) %>
+			<% if tie.length >= 1 %>
+			<% tie = tie[0] %>
+			<% tied = StudentMember.find(tie.studentmember_id).name %>
+			<% else %>
+			<% tied = "Not yet assigned" %>
+			<% end %>
+			<td><%= alumni.id %></td>
+			<td><%= alumni.name %></td>
+			<td><%= alumni.department %></td>
+			<td><%= alumni.hall %></td>
+			<td><%= tied %></td>
+			<td><%= AlumniData.where({ :alumni_id => "#{alumni.id}"})[0].call_next_at %></td>
+			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].search %></td>
+			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].response %></td>
+			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
+		</tr>
+		<% end %>
+		<tr>
+		</tr>
+	</tbody>
+</table>
