@@ -7,6 +7,17 @@ class Alumni < ActiveRecord::Base
 	before_destroy { |record| AlumniData.destroy_all "alumni_id = #{record.id}"   }
 	before_destroy { |record| TieAlumniWithStudentMember.destroy_all "alumni_id = #{record.id}"   }
 
+	comma do
+		id
+		name
+		year "Graduation year"
+		department
+		hall "Hall"
+
+		AlumniData :company
+		AlumniData :designation
+	end
+
 	private
 	def build_other_records
 		AlumniStatus.create({ :alumni_id => self.id })
