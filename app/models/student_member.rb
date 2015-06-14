@@ -15,7 +15,7 @@ class StudentMember < ActiveRecord::Base
     replacer = StringEnumerator.new(:type => ["Student Member"], :name => [self.name])
     html_text_from_file = replacer.enumerate html_text_from_file
 
-    mg_client = Mailgun::Client.new "key-74e2fcede7797b9b869f574c965c9b0d"
+    mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
     mb_obj = Mailgun::MessageBuilder.new
 
     mb_obj.set_from_address("no-reply@erp.alumnicell.com", {"first"=>"SAC", "last" => "Internal ERP"});
@@ -26,7 +26,7 @@ class StudentMember < ActiveRecord::Base
 
     puts "Sending the email, now!"
 
-    mg_client.send_message("sandbox3a6bc1bbcfc149ba9e95376871456536.mailgun.org", mb_obj)
+    mg_client.send_message(ENV['MAILGUN_SENDING_DOMAIN'], mb_obj)
 
     puts "Mail has been sent! :D"
 
