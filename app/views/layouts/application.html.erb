@@ -72,6 +72,17 @@
 		</div><!--/.container-fluid -->
 	</div>
 
+	<% if notice %>
+	<br/>
+	<br/>
+	<p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	<br/>
+	<br/>
+	<p class="alert alert-danger"><%= alert %></p>
+	<% end %>
+
 	<%= yield %>
 
 	<script type="text/javascript">
