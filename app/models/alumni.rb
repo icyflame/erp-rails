@@ -8,14 +8,28 @@ class Alumni < ActiveRecord::Base
 	before_destroy { |record| TieAlumniWithStudentMember.destroy_all "alumni_id = #{record.id}"   }
 
 	comma do
-		id
+		id "ID"
 		name
 		year "Graduation year"
 		department
 		hall "Hall"
 
-		AlumniData :company
-		AlumniData :designation
+    AlumniData :company
+    AlumniData :designation
+    AlumniData :home_address => "Home Address"
+    AlumniData :office_address
+    AlumniData :home_phone
+    AlumniData :office_phone
+    AlumniData :mobile_phone
+    AlumniData :email1 => "Primary Email"
+    AlumniData :email2 => "Secondary Email"
+    AlumniData :payment_details
+    AlumniData :call_next_at
+
+    AlumniStatus  :search
+    AlumniStatus  :response
+
+    TieAlumniWithStudentMember :studentmember_id
 	end
 
 	private
