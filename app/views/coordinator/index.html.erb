@@ -27,37 +27,9 @@
 				<% @allAlums.each do |alumni| %>
 				<tr>
 					<td><%= alumni.name %></td>
-
-					<% stat = AlumniStatus.where({ :alumni_id => "#{alumni.id}"}) %>
-					<% if stat.length >= 1 %>
-
-					<% stat = stat[0] %>
-					<% searchstate = stat.search %>
-					<% responsestate = stat.response %>
-
-					<% else %>
-
-					<% searchstate = "Not stored" %>
-					<% responsestate = "Not stored" %>
-
-					<% end %>
-
-					<% tie = TieAlumniWithStudentMember.where({ :alumni_id => "#{alumni.id}" }) %>
-
-					<% if tie.length >= 1 %>
-
-					<% tie = tie[0] %>
-					<% tied = StudentMember.find(tie.studentmember_id).name %>
-
-					<% else %>
-
-					<% tied = "Not yet assigned" %>
-
-					<% end %>
-
-					<td><%= tied %></td>
-					<td><%= responsestate %></td>
-					<td><%= searchstate %></td>
+					<td><%= StudentMember.find(alumni.studentmember_id).name %></td>
+					<td><%= @response_all[alumni.response] %></td>
+					<td><%= @search_all[alumni.search] %></td>
 					
 				</tr>
 				<% end %>

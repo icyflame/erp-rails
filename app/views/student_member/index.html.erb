@@ -22,9 +22,9 @@
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>
 			<td><%= alumni.hall %></td>
-			<td><%= AlumniData.where({ :alumni_id => "#{alumni.id}"})[0].call_next_at %></td>
-			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].search %></td>
-			<td><%= AlumniStatus.where({ :alumni_id => "#{alumni.id}" })[0].response %></td>
+			<td><%= alumni.call_next_at %></td>
+			<td><%= @search_all[alumni.search] %></td>
+			<td><%= @response_all[alumni.response] %></td>						
 			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
 		</tr>
 		<% end %>
