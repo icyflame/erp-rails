@@ -1,21 +1,13 @@
 Rails.application.routes.draw do
-  get 'data/addmore'
-
   get 'bills/index'
 
   get 'bills/add'
-
-  get 'alumni_status/updatesearch'
-
-  get 'alumni_status/updateresponse'
   
 	get 'viewall/alumni'
 
   get 'viewall/students'
 
   get 'viewall/alumni/paid' => 'viewall#paid'
-
-  get 'viewall/show'
 
   get 'alumni_data/update'
 
