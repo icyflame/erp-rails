@@ -1,5 +1,6 @@
 ActiveAdmin.register Alumni do
-  permit_params :name, :year, :hall
+
+  permit_params :name, :year, :hall, :department
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
