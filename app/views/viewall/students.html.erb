@@ -1,6 +1,39 @@
 <h2 align="center">Complete Student Member Status</h2>
 <hr>
 
+<style type="text/css">
+.label {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: normal;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	/*margin: 3px;*/
+}
+
+.label-primary .badge {
+	color: #428bca;
+	background-color: #fff;
+}
+.label-success .badge {
+	color: #5cb85c;
+	background-color: #fff;
+}
+.label-info .badge {
+	color: #5bc0de;
+	background-color: #fff;
+}
+.label-warning .badge {
+	color: #f0ad4e;
+	background-color: #fff;
+}
+.label-danger .badge {
+	color: #d9534f;
+	background-color: #fff;
+}
+</style>
+
 <table class="table table-justified">
 	<thead>
 		<td>id</td>
@@ -22,10 +55,12 @@
 		<% @neutral = 0 %>
 		<% @registered = 0 %>
 		<tr>
-			<% allties = TieAlumniWithStudentMember.where({ :studentmember_id => "#{student.id}" }) %>
+			<%# allties = TieAlumniWithStudentMember.where({ :studentmember_id => "#{student.id}" }) %>
+			<% allties = @allTies.where({ :studentmember_id => "#{student.id}" }) %>
 				<% if allties.length >= 1 %>
 					<% allties.each do |tie| %>
-					<% stat = AlumniStatus.where({ :alumni_id => "#{tie.alumni_id}"}) %>
+					<%# stat = AlumniStatus.where({ :alumni_id => "#{tie.alumni_id}"}) %>
+					<% stat = @allStatus.where({ :alumni_id => "#{tie.alumni_id}"}) %>
 
 						<% case stat[0].search %>
 						<% when "ready" %>
@@ -64,17 +99,21 @@
 			<td><%= allties.length %></td>
 			<!-- <td><%= @responseAdd %></td> -->
 			<td>
-				<a href="#" class="btn btn-success btn-sm">Positive <span class="badge"> <%= @positive %> </span></a>
+				<!-- <a href="#" class="btn btn-success btn-sm">Positive <span class="badge"> <%= @positive %> </span></a>
 				<a href="#" class="btn btn-danger btn-sm">Negative <span class="badge"> <%= @negative %> </span></a>
 				<a href="#" class="btn btn-info btn-sm">Neutral <span class="badge"> <%= @neutral %> </span></a>
-				<a href="#" class="btn btn-primary btn-sm">Registered <span class="badge"> <%= @registered %> </span></a>
+				<a href="#" class="btn btn-primary btn-sm">Registered <span class="badge"> <%= @registered %> </span></a> -->
+				<label class="label label-success"> Positive <span class="badge"> <%= @positive %> </span> </label>
+				<label class="label label-danger"> Negative <span class="badge"> <%= @negative %> </span> </label>
+				<label class="label label-info"> Neutral <span class="badge"> <%= @neutral %> </span> </label>
+				<label class="label label-primary"> Registered <span class="badge"> <%= @registered %> </span> </label>
 			</td>
 			<!-- <td><%= @searchAdd %></td> -->
 			<td>
-				<button class="btn btn-primary btn-sm">Ready <span class="badge"> <%= @ready %> </span></button>
-				<button class="btn btn-success btn-sm">Found  <span class="badge"> <%= @found %> </span></button>
-				<button class="btn btn-info btn-sm">Tobesearched <span class="badge"> <%= @tobesearched %> </span></button>
-				<button class="btn btn-danger btn-sm">Dumped <span class="badge"> <%= @dumped %> </span></button>
+				<label class="label label-primary">Ready <span class="badge"> <%= @ready %> </span></label>
+				<label class="label label-success">Found  <span class="badge"> <%= @found %> </span></label>
+				<label class="label label-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></label>
+				<label class="label label-danger">Dumped <span class="badge"> <%= @dumped %> </span></label>
 			</td>
 		</tr>
 		<% end %>
