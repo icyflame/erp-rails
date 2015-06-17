@@ -27,6 +27,10 @@ class ViewallController < ApplicationController
     end
 
     @allStudents = StudentMember.all
+
+    @allStatus = AlumniStatus.all
+
+    @allTies = TieAlumniWithStudentMember.all
   end
 
   def paid
