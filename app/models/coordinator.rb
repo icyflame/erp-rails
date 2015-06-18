@@ -24,9 +24,11 @@ class Coordinator < ActiveRecord::Base
     mb_obj.set_text_body("Hello, Just letting you know that your account has been created, Regards, System Administrator.");
     mb_obj.set_html_body(html_text_from_file)
 
-		puts "Sending the email, now!"
-
-		mg_client.send_message(ENV['MAILGUN_SENDING_DOMAIN'], mb_obj)
+    puts "Sending the email, now!"
+    
+    if Rails.env.production?
+      mg_client.send_message(ENV['MAILGUN_SENDING_DOMAIN'], mb_obj)
+    end
 
     puts "Mail has been sent! :D"
 
