@@ -43,7 +43,6 @@ gem 'rails_12factor', group: :production
 
 gem 'bootstrap-sass'
 gem 'devise'
-gem 'activeadmin', :git => 'https://github.com/activeadmin/activeadmin.git'
 gem 'jquery-tablesorter'
 gem 'mailgun-ruby'
 gem 'string_enumerator'
