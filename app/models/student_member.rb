@@ -2,7 +2,7 @@ class StudentMember < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-		 :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
   validates :name, :rollnum, presence: true
   after_create :send_confirmation_mail
 
@@ -26,7 +26,9 @@ class StudentMember < ActiveRecord::Base
 
     puts "Sending the email, now!"
 
-    mg_client.send_message(ENV['MAILGUN_SENDING_DOMAIN'], mb_obj)
+    if Rails.env.production?
+      mg_client.send_message(ENV['MAILGUN_SENDING_DOMAIN'], mb_obj)
+    end
 
     puts "Mail has been sent! :D"
 
