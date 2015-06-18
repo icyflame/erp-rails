@@ -21,8 +21,6 @@ Rails.application.routes.draw do
 
   devise_for :coordinators
   devise_for :student_members
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   resources :student_member
   resources :alumni
