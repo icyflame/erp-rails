@@ -14,4 +14,19 @@ class ApplicationController < ActionController::Base
   	devise_parameter_sanitizer.for(:account_update) << :name
   	devise_parameter_sanitizer.for(:account_update) << :rollnum
   end
+
+  # CanCan Override
+
+  def current_authenticated_resource
+    if student_member_signed_in?
+      current_student_member
+    elsif coordinator_signed_in?
+      current_coordinator
+    end
+  end
+
+  # in ApplicationController
+  def current_ability
+    @current_ability ||= Ability.new(current_authenticated_resource)
+  end
 end

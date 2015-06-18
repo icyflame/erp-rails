@@ -11,7 +11,16 @@ class Ability
     #     can :read, :all
     #   end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # puts user
+    # raise user.inspect
+    if user && user.id == 0
+        can :manage, :all
+    elsif user
+        can :access, :rails_admin
+        can :dashboard
+        can :read, :all
+    end
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
@@ -28,5 +37,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
+end
 end
