@@ -4,16 +4,6 @@ class StaticpageController < ApplicationController
 
 	def createallusers
 
-		if not AdminUser.where(email: "admin@example.com").length > 0
-
-			AdminUser.create(email: 'admin@example.com', 
-				password: 'password', 
-				password_confirmation: 'password')
-
-		end
-
-		puts "AdminUser created"
-
 		StudentMember.create(id: '0',
 			name: 'Default User', 
 			rollnum: '15DF12345',
