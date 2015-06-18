@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :registered_alumnis
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'bills/index'
 

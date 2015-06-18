@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618091631) do
+ActiveRecord::Schema.define(version: 20150618152406) do
 
   create_table "alumni_data", force: true do |t|
     t.integer  "alumni_id"
@@ -84,6 +84,50 @@ ActiveRecord::Schema.define(version: 20150618091631) do
 
   add_index "coordinators", ["email"], name: "index_coordinators_on_email", unique: true
   add_index "coordinators", ["reset_password_token"], name: "index_coordinators_on_reset_password_token", unique: true
+
+  create_table "registered_alumnis", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
+    t.string   "mobile"
+    t.string   "dob"
+    t.string   "married"
+    t.string   "industry"
+    t.string   "profession"
+    t.string   "org_name"
+    t.string   "designation"
+    t.string   "org_city"
+    t.string   "org_state"
+    t.string   "org_country"
+    t.string   "org_zip"
+    t.string   "org_address"
+    t.string   "roll_number"
+    t.string   "join_year"
+    t.string   "degree"
+    t.string   "department"
+    t.string   "hall"
+    t.string   "year_of_graduating"
+    t.integer  "Alumni_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "registered_alumnis", ["Alumni_id"], name: "index_registered_alumnis_on_Alumni_id"
+  add_index "registered_alumnis", ["email"], name: "index_registered_alumnis_on_email", unique: true
+  add_index "registered_alumnis", ["reset_password_token"], name: "index_registered_alumnis_on_reset_password_token", unique: true
 
   create_table "student_members", force: true do |t|
     t.string   "name"
