@@ -1,68 +1,69 @@
 <h2 class="text-center">Edit your Information center profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
 
-  <% personal = true %>
-  <% org = false %>
-  <% insti = false %>
-  <% stop_printing = false %>
+<% personal = true %>
+<% org = false %>
+<% insti = false %>
+<% stop_printing = false %>
 
-  <h3>Section 1: Personal details <span class="label label-danger">Required</span> </h3>
-  <h4 class="text-muted">All fields in this section are required</h4>
+<h3>Section 1: Personal details <span class="label label-danger">Required</span> </h3>
+<h4 class="text-muted">All fields in this section are required</h4>
 
-  <% resource.attributes.keys.each_with_index do |attribute, key| %>
+<% resource.attributes.keys.each_with_index do |attribute, key| %>
 
-  <% if attribute.include? "id" and not attribute.include? "alumni"
+<% if attribute.include? "id" and not attribute.include? "alumni"
+    # alumni_id field is handled in the last if block
     next
     end %>
 
-  <% if attribute.include? "org" and not org %>
+    <% if attribute.include? "org" and not org %>
     <% org = 1 %>
     <h3>Section 2: Where do you work? </h3>
-    <h4 class="text-muted">Some fields in this section are required</h4>
-  <% end %>
+    <h4 class="text-muted">The Organisation Name field in this section is required.</h4>
+    <% end %>
 
-  <% if attribute.include? "insti" and not insti %>
+    <% if attribute.include? "insti" and not insti %>
     <% insti = 1 %>
     <h3>Section 3: Nostalgia section! </h3>
-    <h4 class="text-muted">Some fields in this section are required</h4>
-  <% end %>
+    <h4 class="text-muted">All fields except roll number are mandatory.</h4>
+    <% end %>
 
-  <% if key > 2 and attribute.include? "id"
-    stop_printing = true
-    end %>
-  <% if not stop_printing %>
-  <div class="field">
-    <%= f.label attribute %><br />
-    <%= f.text_field attribute, required: true %>
-  </div>
-  <% end %>
+    <% if key > 2 and attribute.include? "id"
+      stop_printing = true
+      end %>
+      <% if not stop_printing %>
+      <div class="field">
+        <%= f.label attribute %><br />
+        <%= f.text_field attribute, required: true %>
+      </div>
+      <% end %>
 
-  <% end %>
+      <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <!-- <div class="field">
+        < %= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        < %= f.password_field :password, autocomplete: "off" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <div class="field">
+        < %= f.label :password_confirmation %><br />
+        < %= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div> -->
 
 <!--   <div class="field">
     < %= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     < %= f.password_field :current_password, autocomplete: "off" %>
   </div>
- -->
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+-->
+<div class="actions">
+  <%= f.submit "Update" %>
+</div>
 <% end %>
 
 <!--
@@ -78,5 +79,58 @@
 <script type="text/javascript">
 $(document).ready(function(){
   // add all the field related constraints here
+
+  // remove `required` from all the fields
+  // that are not mandatory
+
+  not_required = new Array();
+  not_required.push("org_industry");
+  not_required.push("org_profession");
+  not_required.push("org_designation");
+  not_required.push("org_city");
+  not_required.push("org_state");
+  not_required.push("org_country");
+  not_required.push("org_zip");
+  not_required.push("org_address");
+  not_required.push("insti_roll_number");
+
+  for(var i=0; i<not_required.length; i+=1){
+    $("#registered_alumni_" + not_required[i]).removeAttr("required");
+  }
+
+  // Remove the prefixes Insti and Org from the labels
+  // Ensure all labels start with capital letter
+
+  $("label").each(function(){
+    if($(this).html().indexOf("Insti") < 0 && $(this).html().indexOf("Org") < 0)
+      return;
+    content = $(this).html().substr($(this).html().indexOf(' ') + 1);
+    content = content[0].toUpperCase() + content.substr(1);
+    $(this).html(content);
+    return;
+  });
+
+  $("label[for=registered_alumni_org_name]").html("Organisation Name");
+
+  // change the labels and types of some fields
+
+  $("label[for=registered_alumni_dob]").html("Date of Birth");
+  $("#registered_alumni_dob").attr("type", "date");
+
+  $("label[for=registered_alumni_married]").html("Marital Status");
+
+  $("#registered_alumni_mobile").attr("type", "number");
+
+  $("#registered_alumni_insti_join_year").attr("type", "number");
+  $("#registered_alumni_insti_year_of_graduating").attr("type", "number");
+  $("#registered_alumni_insti_join_year").attr("min", "1900");
+  $("#registered_alumni_insti_year_of_graduating").attr("min", "1900");
+
+  // Add * to all the required fields
+  $("input[required=required]").parent("div.field")
+                               .children("label").each(function(){
+                                $(this).html($(this).html() + " *");
+                               });
+
 });
 </script>
