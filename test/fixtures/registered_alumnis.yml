@@ -10,46 +10,46 @@ one:
   mobile: MyString
   dob: MyString
   married: MyString
-  industry: MyString
-  profession: MyString
+  org_industry: MyString
+  org_profession: MyString
   org_name: MyString
-  designation: MyString
+  org_designation: MyString
   org_city: MyString
   org_state: MyString
   org_country: MyString
   org_zip: MyString
   org_address: MyString
-  roll_number: MyString
-  join_year: MyString
-  degree: MyString
-  department: MyString
-  hall: MyString
-  year_of_graduating: 
-  Alumni_id: 
+  insti_roll_number: MyString
+  insti_join_year: MyString
+  insti_degree: MyString
+  insti_department: MyString
+  insti_hall: MyString
+  insti_year_of_graduating: 
+  alumni_id: 
 
 two:
-  name: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  country: MyString
-  zip_code: MyString
-  mobile: MyString
-  dob: MyString
-  married: MyString
-  industry: MyString
-  profession: MyString
-  org_name: MyString
-  designation: MyString
-  org_city: MyString
-  org_state: MyString
-  org_country: MyString
-  org_zip: MyString
-  org_address: MyString
-  roll_number: MyString
-  join_year: MyString
-  degree: MyString
-  department: MyString
-  hall: MyString
-  year_of_graduating: 
-  Alumni_id: 
+  name: some_other_string
+  address: some_other_string
+  city: some_other_string
+  state: some_other_string
+  country: some_other_string
+  zip_code: some_other_string
+  mobile: some_other_string
+  dob: some_other_string
+  married: some_other_string
+  org_industry: some_other_string
+  org_profession: some_other_string
+  org_name: some_other_string
+  org_designation: some_other_string
+  org_city: some_other_string
+  org_state: some_other_string
+  org_country: some_other_string
+  org_zip: some_other_string
+  org_address: some_other_string
+  insti_roll_number: some_other_string
+  insti_join_year: some_other_string
+  insti_degree: some_other_string
+  insti_department: some_other_string
+  insti_hall: some_other_string
+  insti_year_of_graduating: 
+  alumni_id: 
