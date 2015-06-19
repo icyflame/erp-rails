@@ -13,6 +13,36 @@ class ApplicationController < ActionController::Base
 
   	devise_parameter_sanitizer.for(:account_update) << :name
   	devise_parameter_sanitizer.for(:account_update) << :rollnum
+
+    # registered alumni
+
+    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:account_update) << :address
+    devise_parameter_sanitizer.for(:account_update) << :city
+    devise_parameter_sanitizer.for(:account_update) << :state
+    devise_parameter_sanitizer.for(:account_update) << :country
+    devise_parameter_sanitizer.for(:account_update) << :zip_code
+    devise_parameter_sanitizer.for(:account_update) << :mobile
+    devise_parameter_sanitizer.for(:account_update) << :dob
+    devise_parameter_sanitizer.for(:account_update) << :married
+    devise_parameter_sanitizer.for(:account_update) << :org_industry
+    devise_parameter_sanitizer.for(:account_update) << :org_profession
+    devise_parameter_sanitizer.for(:account_update) << :org_name
+    devise_parameter_sanitizer.for(:account_update) << :org_designation
+    devise_parameter_sanitizer.for(:account_update) << :org_city
+    devise_parameter_sanitizer.for(:account_update) << :org_state
+    devise_parameter_sanitizer.for(:account_update) << :org_country
+    devise_parameter_sanitizer.for(:account_update) << :org_zip
+    devise_parameter_sanitizer.for(:account_update) << :org_address
+    devise_parameter_sanitizer.for(:account_update) << :insti_roll_number
+    devise_parameter_sanitizer.for(:account_update) << :insti_join_year
+    devise_parameter_sanitizer.for(:account_update) << :insti_degree
+    devise_parameter_sanitizer.for(:account_update) << :insti_department
+    devise_parameter_sanitizer.for(:account_update) << :insti_hall
+    devise_parameter_sanitizer.for(:account_update) << :insti_year_of_graduating
+
+    devise_parameter_sanitizer.for(:account_update) << :email
+    devise_parameter_sanitizer.for(:account_update) << :alumni_id
   end
 
   # CanCan Override

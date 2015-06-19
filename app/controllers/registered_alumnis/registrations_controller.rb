@@ -20,9 +20,9 @@ class RegisteredAlumnis::RegistrationsController < Devise::RegistrationsControll
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -46,35 +46,9 @@ class RegisteredAlumnis::RegistrationsController < Devise::RegistrationsControll
   # end
 
   # You can put the params you want to permit in the empty array.
-  def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << :name
-    devise_parameter_sanitizer.for(:account_update) << :address
-    devise_parameter_sanitizer.for(:account_update) << :city
-    devise_parameter_sanitizer.for(:account_update) << :state
-    devise_parameter_sanitizer.for(:account_update) << :country
-    devise_parameter_sanitizer.for(:account_update) << :zip_code
-    devise_parameter_sanitizer.for(:account_update) << :mobile
-    devise_parameter_sanitizer.for(:account_update) << :dob
-    devise_parameter_sanitizer.for(:account_update) << :married
-    devise_parameter_sanitizer.for(:account_update) << :org_industry
-    devise_parameter_sanitizer.for(:account_update) << :org_profession
-    devise_parameter_sanitizer.for(:account_update) << :org_name
-    devise_parameter_sanitizer.for(:account_update) << :org_designation
-    devise_parameter_sanitizer.for(:account_update) << :org_city
-    devise_parameter_sanitizer.for(:account_update) << :org_state
-    devise_parameter_sanitizer.for(:account_update) << :org_country
-    devise_parameter_sanitizer.for(:account_update) << :org_zip
-    devise_parameter_sanitizer.for(:account_update) << :org_address
-    devise_parameter_sanitizer.for(:account_update) << :insti_roll_number
-    devise_parameter_sanitizer.for(:account_update) << :insti_join_year
-    devise_parameter_sanitizer.for(:account_update) << :insti_degree
-    devise_parameter_sanitizer.for(:account_update) << :insti_department
-    devise_parameter_sanitizer.for(:account_update) << :insti_hall
-    devise_parameter_sanitizer.for(:account_update) << :insti_year_of_graduating
-
-    devise_parameter_sanitizer.for(:account_update) << :email
-    devise_parameter_sanitizer.for(:account_update) << :alumni_id
-  end
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.for(:account_update) << :attribute
+  # end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
