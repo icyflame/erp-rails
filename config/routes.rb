@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'bills/index'
 
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
 
   devise_for :coordinators
   devise_for :student_members
+  devise_for :registered_alumnis, controllers: { sessions: "registered_alumnis/sessions", registrations: "registered_alumnis/registrations" }
 
   resources :student_member
   resources :alumni
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   get '/homepage' => 'staticpage#index'
   get '/homepage/studentmember' => 'student_member#index'
   get '/homepage/coordinator' => 'coordinator#index'
+  get '/information' => 'registered_alumni#show'
 
   get '/administrator/createallusers' => 'staticpage#createallusers'
   get 'administrator/addmorealumni' => 'data#addmore'
