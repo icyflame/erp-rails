@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619071029) do
+ActiveRecord::Schema.define(version: 20150816161337) do
 
   create_table "alumni_data", force: true do |t|
     t.integer  "alumni_id"
@@ -128,6 +128,29 @@ ActiveRecord::Schema.define(version: 20150619071029) do
   add_index "registered_alumnis", ["alumni_id"], name: "index_registered_alumnis_on_alumni_id"
   add_index "registered_alumnis", ["email"], name: "index_registered_alumnis_on_email", unique: true
   add_index "registered_alumnis", ["reset_password_token"], name: "index_registered_alumnis_on_reset_password_token", unique: true
+
+  create_table "sponsors", force: true do |t|
+    t.string   "company"
+    t.string   "type_of_sponsorship"
+    t.string   "person"
+    t.string   "mobile_phone"
+    t.string   "office_phone"
+    t.string   "email1"
+    t.string   "email2"
+    t.string   "designation"
+    t.string   "alumnus"
+    t.string   "batch"
+    t.string   "dept"
+    t.string   "hall"
+    t.string   "first_date"
+    t.string   "comments"
+    t.string   "next_date"
+    t.string   "proposal_sent"
+    t.string   "remarks"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "student_members", force: true do |t|
     t.string   "name"
