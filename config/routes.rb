@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'bills/index'
 
   get 'bills/add'
-  
+
 	get 'viewall/alumni'
 
   get 'viewall/students'
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   resources :student_member
   resources :alumni
   resource :alumni_datum
+  resource :sponsors
+  
+  get 'sponsors/update/:id' => 'sponsors#update'
+  post 'sponsors/edit/:id' => 'sponsors#edit'
 
   get '/homepage' => 'staticpage#index'
   get '/homepage/studentmember' => 'student_member#index'
