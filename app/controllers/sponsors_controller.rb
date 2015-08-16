@@ -1,4 +1,6 @@
 class SponsorsController < ApplicationController
+  before_filter :ensure_signed_in
+
   def show
     @allSponsors = Sponsor.all
   end
