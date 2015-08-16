@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: MyString
+  person: MyString
+  mobile: MyString
+  email1: MyString
+  email2: MyString
+  designation: MyString
+  alumnus: MyString
+  batch: MyString
+  dept: MyString
+  hall: MyString
+  first_date: MyString
+  comments: MyString
+  next_date: MyString
+  proposal_sent: MyString
+  remarks: MyString
+  status: MyString
+  type: 
+
+two:
+  company: MyString
+  person: MyString
+  mobile: MyString
+  email1: MyString
+  email2: MyString
+  designation: MyString
+  alumnus: MyString
+  batch: MyString
+  dept: MyString
+  hall: MyString
+  first_date: MyString
+  comments: MyString
+  next_date: MyString
+  proposal_sent: MyString
+  remarks: MyString
+  status: MyString
+  type: 
