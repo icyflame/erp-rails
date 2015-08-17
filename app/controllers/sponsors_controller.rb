@@ -16,7 +16,7 @@ class SponsorsController < ApplicationController
     @sponsor = Sponsor.new
 
 		if @sponsor.update(sponsor_params)
-			render(:file => File.join(Rails.root, 'public/201.html'), :status => 201, :layout => false)
+			redirect_to sponsors_path, :notice => 'New sponsor ' + params[:sponsor][:company] + ' has been created.'
 			return
 		else
 			puts "Could not update in the DB"
@@ -33,7 +33,7 @@ class SponsorsController < ApplicationController
     @sponsor = Sponsor.find(params[:id])
 
 		if @sponsor.update(sponsor_params)
-			render(:file => File.join(Rails.root, 'public/200.html'), :status => 201, :layout => false)
+			redirect_to sponsors_path, :notice => 'Sponsor: ' + Sponsor.find(params[:id]).company + ' has been updated.'
 			return
 		else
 			puts "Could not update in the DB"

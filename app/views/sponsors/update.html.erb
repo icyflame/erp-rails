@@ -12,7 +12,30 @@
 
 <%= label_tag attribute %>
 
+<% if attribute.humanize.downcase.include? "date" %>
+
+<%= date_field_tag "sponsor[" + attribute + "]", @sponsor.attributes[attribute].to_s %>
+
+<% elsif attribute.humanize.downcase.include? "status" %>
+
+<%= select_tag "sponsor[" + attribute + "]", options_for_select([ "negative", "neutral", "positive" ], @sponsor.attributes[attribute].to_s) %>
+<br>
+
+<% elsif attribute.humanize.downcase.include? "sent" %>
+
+<%= select_tag "sponsor[" + attribute + "]", options_for_select([ "yes", "no" ], @sponsor.attributes[attribute].to_s) %>
+<br>
+
+<% elsif attribute.humanize.downcase.include? "alumnus" %>
+
+<%= select_tag "sponsor[" + attribute + "]", options_for_select([ "yes", "no" ], @sponsor.attributes[attribute].to_s) %>
+<br>
+
+<% else %>
+
 <%= text_field_tag "sponsor[" + attribute + "]", @sponsor.attributes[attribute].to_s %>
+
+<% end %>
 
 <% end %>
 
