@@ -4,10 +4,7 @@ class AlumniController < ApplicationController
 
   def show
 
-    if not student_member_signed_in? and not coordinator_signed_in?
-      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-      return
-    end
+    ensure_signed_in
 
   	@thisID = params[:id]
     @alum = Alumni.select("*").joins(:AlumniData, :AlumniStatus, :TieAlumniWithStudentMember).find(@thisID)
