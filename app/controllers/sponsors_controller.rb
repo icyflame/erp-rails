@@ -16,7 +16,7 @@ class SponsorsController < ApplicationController
     @sponsor = Sponsor.new
 
 		if @sponsor.update(sponsor_params)
-			render(:file => File.join(Rails.root, 'public/201.html'), :status => 201, :layout => false)
+			redirect_to sponsors_path, :notice => 'New sponsor ' + params[:sponsor][:company] + ' has been created.'
 			return
 		else
 			puts "Could not update in the DB"
