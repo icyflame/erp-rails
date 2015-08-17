@@ -10,7 +10,7 @@ class AlumniDataController < ApplicationController
 				@alumni_data = AlumniData.find(params[:alum_id])
 
 				if @alumni_data.update(alumni_data_params)
-					render(:file => File.join(Rails.root, 'public/200.html'), :status => 200, :layout => false)
+					redirect_to root_path, :notice => 'Alumni: ' + Alumni.find(params[:alum_id]).name + ' has been updated.'
 					return
 				else
 					puts "Found TIE Object, but couldn't update in DB"
@@ -22,10 +22,10 @@ class AlumniDataController < ApplicationController
 
 				puts "Allotted to someone else"
 				render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-				return	
+				return
 
 			end
-		end		
+		end
 	end
 
 	private
