@@ -29,8 +29,9 @@ Rails.application.routes.draw do
   resources :alumni
   resource :alumni_datum
   resource :sponsors
-  
+
   get 'sponsors/update/:id' => 'sponsors#update'
+  get 'sponsors/view/:id' => 'sponsors#view'
   post 'sponsors/edit/:id' => 'sponsors#edit'
 
   get '/homepage' => 'staticpage#index'

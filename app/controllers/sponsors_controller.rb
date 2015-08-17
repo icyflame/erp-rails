@@ -5,6 +5,10 @@ class SponsorsController < ApplicationController
     @allSponsors = Sponsor.all
   end
 
+  def view
+    @sponsor = Sponsor.find(params[:id])
+  end
+
   def new
   end
 

@@ -1,4 +1,4 @@
-<h1>Edit sponsor <%= @sponsor.company %> </h1>
+<h1>Edit sponsor: <%= @sponsor.company %> </h1>
 
 <%= form_for @sponsor, url: '/sponsors/edit/' + @sponsor.id.to_s, method: :post do |f| %>
 
