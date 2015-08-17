@@ -4,7 +4,7 @@ class Coordinator < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, :rollnum, presence: true
-  after_create :send_confirmation_mail
+  # after_create :send_confirmation_mail
 
   private
   def send_confirmation_mail

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'bills/index'
 
   get 'bills/add'
-  
+
 	get 'viewall/alumni'
 
   get 'viewall/students'
@@ -28,15 +28,20 @@ Rails.application.routes.draw do
   resources :student_member
   resources :alumni
   resource :alumni_datum
+  resource :sponsors
+
+  get 'sponsors/update/:id' => 'sponsors#update'
+  get 'sponsors/view/:id' => 'sponsors#view'
+  post 'sponsors/edit/:id' => 'sponsors#edit'
 
   get '/homepage' => 'staticpage#index'
   get '/homepage/studentmember' => 'student_member#index'
   get '/homepage/coordinator' => 'coordinator#index'
   get '/information' => 'registered_alumni#show'
 
-  get '/administrator/createallusers' => 'staticpage#createallusers'
-  get 'administrator/addmorealumni' => 'data#addmore'
-  get 'administrator/backup' => 'data#backup'
+  get '/data/administrator/createallusers' => 'staticpage#createallusers'
+  get '/data/administrator/addmorealumni' => 'data#addmore'
+  get '/data/administrator/backup' => 'data#backup'
 
   post '/alumni/status/search' => 'alumni_status#updatesearch'
   post '/alumni/status/response' => 'alumni_status#updateresponse'
