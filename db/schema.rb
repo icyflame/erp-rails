@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619071029) do
+ActiveRecord::Schema.define(version: 20150816171119) do
 
   create_table "alumni_data", force: true do |t|
     t.integer  "alumni_id"
@@ -70,16 +70,17 @@ ActiveRecord::Schema.define(version: 20150619071029) do
     t.string   "portfolio"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "coordinator",            default: true
   end
 
   add_index "coordinators", ["email"], name: "index_coordinators_on_email", unique: true
@@ -129,22 +130,46 @@ ActiveRecord::Schema.define(version: 20150619071029) do
   add_index "registered_alumnis", ["email"], name: "index_registered_alumnis_on_email", unique: true
   add_index "registered_alumnis", ["reset_password_token"], name: "index_registered_alumnis_on_reset_password_token", unique: true
 
+  create_table "sponsors", force: true do |t|
+    t.string   "company"
+    t.string   "type_of_sponsorship"
+    t.string   "person"
+    t.string   "mobile_phone"
+    t.string   "office_phone"
+    t.string   "email1"
+    t.string   "email2"
+    t.string   "designation"
+    t.string   "alumnus"
+    t.string   "batch"
+    t.string   "dept"
+    t.string   "hall"
+    t.string   "first_date"
+    t.string   "comments"
+    t.string   "next_date"
+    t.string   "proposal_sent"
+    t.string   "remarks"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "student_members", force: true do |t|
     t.string   "name"
     t.string   "rollnum"
     t.string   "portfolio"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "studmem",                default: true
   end
 
   add_index "student_members", ["email"], name: "index_student_members_on_email", unique: true

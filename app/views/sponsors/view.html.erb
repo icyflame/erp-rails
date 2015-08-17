@@ -1,0 +1,25 @@
+<div class="">
+  <h1>Viewing sponsor: <%= @sponsor.company %> ( ID <%= @sponsor.id %> )
+    <a href="/sponsors/update/<%= @sponsor.id %>">
+      <button class="btn btn-primary" type="button">Edit this sponsor</button>
+    </a>
+  </h1>
+</div>
+<br>
+
+<% @sponsor.attributes.keys.each_with_index do |attribute, key| %>
+
+<% if key < 1 or attribute.humanize.include? "Created" or attribute.humanize.include? "Updated" %>
+
+<% next %>
+
+<% end %>
+
+<%= label_tag attribute %>
+
+<%= text_field_tag "sponsor[" + attribute + "]", @sponsor.attributes[attribute].to_s, :disabled => 'disabled', :class => 'form-control' %>
+<br>
+
+<% end %>
+
+<br>

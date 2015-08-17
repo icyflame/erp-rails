@@ -45,6 +45,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :alumni_id
   end
 
+  def ensure_signed_in
+    if student_member_signed_in? || coordinator_signed_in?
+      return true
+    else
+      redirect_to root_path, :alert => 'You need to be signed in to view that page.'
+    end
+  end
+
   # CanCan Override
 
   def current_authenticated_resource

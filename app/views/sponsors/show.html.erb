@@ -1,0 +1,49 @@
+<h1>All Sponsors</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>
+        Company
+      </td>
+      <td>
+        Next Date
+      </td>
+      <td>
+        Proposal Sent?
+      </td>
+      <td>
+        Status
+      </td>
+      <td>
+        Update
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @allSponsors.each do |sponsor| %>
+    <tr>
+      <td>
+        <%= sponsor.company %>
+      </td>
+      <td>
+        <%= sponsor.next_date %>
+      </td>
+      <td>
+        <%= sponsor.proposal_sent %>
+      </td>
+      <td>
+        <%= sponsor.status %>
+      </td>
+      <td>
+        <a href="/sponsors/update/<%= sponsor.id %>">
+        <button type="button" name="Edit" class="btn btn-primary">Edit</button>
+        </a>
+        <a href="/sponsors/view/<%= sponsor.id %>">
+        <button type="button" name="Edit" class="btn btn-success">View</button>
+        </a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
