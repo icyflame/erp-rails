@@ -2,8 +2,10 @@
 
 one:
   company: MyString
+  type_of_sponsorship: MyString
   person: MyString
-  mobile: MyString
+  mobile_phone: MyString
+  office_phone: MyString
   email1: MyString
   email2: MyString
   designation: MyString
@@ -17,23 +19,23 @@ one:
   proposal_sent: MyString
   remarks: MyString
   status: MyString
-  type: 
 
 two:
-  company: MyString
-  person: MyString
-  mobile: MyString
-  email1: MyString
-  email2: MyString
-  designation: MyString
-  alumnus: MyString
-  batch: MyString
-  dept: MyString
-  hall: MyString
-  first_date: MyString
-  comments: MyString
-  next_date: MyString
-  proposal_sent: MyString
-  remarks: MyString
-  status: MyString
-  type: 
+  company: MyString2
+  type_of_sponsorship: MyString2
+  person: MyString2
+  mobile_phone: MyString2
+  office_phone: MyString2
+  email1: MyString2
+  email2: MyString2
+  designation: MyString2
+  alumnus: MyString2
+  batch: MyString2
+  dept: MyString2
+  hall: MyString2
+  first_date: MyString2
+  comments: MyString2
+  next_date: MyString2
+  proposal_sent: MyString2
+  remarks: MyString2
+  status: MyString2
