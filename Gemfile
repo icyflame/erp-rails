@@ -50,3 +50,8 @@ gem 'string_enumerator'
 gem 'comma'
 gem 'rails_admin'
 gem 'cancan'
+
+group :test, :development do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+end
