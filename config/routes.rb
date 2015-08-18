@@ -11,12 +11,6 @@ Rails.application.routes.draw do
 
   get 'viewall/alumni/paid' => 'viewall#paid'
 
-  get 'alumni_data/update'
-
-  get 'alumni/index'
-
-  get 'alumni/show'
-
   get 'student_member/index'
 
   get 'student_member/show'
