@@ -31,4 +31,10 @@ FactoryGirl.define do
     remarks "some_string_value"
     status "some_string_value"
   end
+  factory :Alumni do
+    name 'some value!'
+    year '2015'
+    hall 'some value!'
+    department 'some value!'
+  end
 end
