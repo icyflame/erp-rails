@@ -17,7 +17,7 @@
 	<tbody>
 		<% @allAlums.each do |alumni| %>
 		<tr>
-			<% tied = StudentMember.find(alumni.studentmember_id).name %>
+			<% tied = if alumni.studentmember_id != 0 then StudentMember.find(alumni.studentmember_id).name else 'Unallotted' end %>
 			<td><%= alumni.id %></td>
 			<td><%= alumni.name %></td>
 			<td><%= alumni.department %></td>
