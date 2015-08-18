@@ -130,7 +130,7 @@
 		if(getParam("search")){
 			$("div label input[type=text]").addClass("search-field");
 			var elem = $(".search-field");
-			elem.val(getParam("search"));
+			elem.val(decodeURIComponent(getParam("search")));
 			elem.trigger("change");
 		}
 
