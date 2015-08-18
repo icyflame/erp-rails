@@ -1,4 +1,4 @@
-<hr> 
+<hr>
 
 <div class="">
 	<div class="row">
@@ -26,11 +26,12 @@
 			<tbody>
 				<% @allAlums.each do |alumni| %>
 				<tr>
+					<% tied = if alumni.studentmember_id != 0 then StudentMember.find(alumni.studentmember_id).name else 'Unallotted' end %>
 					<td><%= alumni.name %></td>
-					<td><%= StudentMember.find(alumni.studentmember_id).name %></td>
+					<td><%= tied %></td>
 					<td><%= @response_all[alumni.response] %></td>
 					<td><%= @search_all[alumni.search] %></td>
-					
+
 				</tr>
 				<% end %>
 			</tbody>
@@ -39,6 +40,6 @@
 		<h3>Currently, no data available</h3>
 		<% end %>
 	</div>
-	
+
 	<br>
 </div>
