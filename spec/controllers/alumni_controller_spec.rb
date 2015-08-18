@@ -5,7 +5,7 @@ RSpec.describe AlumniController, :type => :controller do
     it 'Should not get alumni details' do
       alumni = FactoryGirl.create :Alumni
       alumni.save!
-      get :show, :id => '1'
+      get :show, :id => alumni.id
       expect(response).to have_http_status(302)
     end
   end
@@ -15,7 +15,7 @@ RSpec.describe AlumniController, :type => :controller do
       sign_in user
       alumni = FactoryGirl.create :Alumni
       alumni.save!
-      get :show, :id => '1'
+      get :show, :id => alumni.id
       expect(response).to have_http_status(200)
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe AlumniController, :type => :controller do
       sign_in user
       alumni = FactoryGirl.create :Alumni
       alumni.save!
-      get :show, :id => '1'
+      get :show, :id => alumni.id
       expect(response).to have_http_status(200)
     end
   end

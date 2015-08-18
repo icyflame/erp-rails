@@ -10,7 +10,7 @@ RSpec.describe SponsorsController, :type => :controller do
     it 'View one sponsor should not be accessible' do
       spons = FactoryGirl.create :Sponsor
       spons.save!
-      get :view, :id => "1"
+      get :view, :id => spons.id
       expect(response).to have_http_status(302)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe SponsorsController, :type => :controller do
       sign_in user
       spons = FactoryGirl.create :Sponsor
       spons.save!
-      get :view, :id => "1"
+      get :view, :id => spons.id
       expect(response).to have_http_status(200)
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe SponsorsController, :type => :controller do
       sign_in user
       spons = FactoryGirl.create :Sponsor
       spons.save!
-      get :view, :id => "1"
+      get :view, :id => spons.id
       expect(response).to have_http_status(200)
     end
   end
