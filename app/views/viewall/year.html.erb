@@ -1,0 +1,35 @@
+<h2 align="center">Complete Alumni Database for year <%= params[:year] %></h2>
+<h4 align="center"><label class="label label-success"> Total Count: <%= @allAlums.count %> </label></h4>
+<hr>
+
+<table id="viewallController" class="table table-justified">
+	<thead>
+		<td>id</td>
+		<td>name</td>
+		<td>department</td>
+		<td>hall</td>
+		<td>assigned to</td>
+		<td>call next at</td>
+		<td>search</td>
+		<td>response</td>
+		<td></td>
+	</thead>
+	<tbody>
+		<% @allAlums.each do |alumni| %>
+		<tr>
+			<% tied = StudentMember.find(alumni.studentmember_id).name %>
+			<td><%= alumni.id %></td>
+			<td><%= alumni.name %></td>
+			<td><%= alumni.department %></td>
+			<td><%= alumni.hall %></td>
+			<td><%= tied %></td>
+			<td><%= alumni.call_next_at %></td>
+			<td><%= @search_all[alumni.search] %></td>
+			<td><%= @response_all[alumni.response] %></td>
+			<td><a href="<%= alumni_path(alumni.id) %>">OPEN</a></td>
+		</tr>
+		<% end %>
+		<tr>
+		</tr>
+	</tbody>
+</table>
