@@ -2,7 +2,7 @@
 <hr>
 
 <style type="text/css">
-.label {
+.btn {
 	display: inline-block;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -12,25 +12,28 @@
 	/*margin: 3px;*/
 }
 
-.label-primary .badge {
+.btn-primary .badge {
 	color: #428bca;
 	background-color: #fff;
 }
-.label-success .badge {
+.btn-success .badge {
 	color: #5cb85c;
 	background-color: #fff;
 }
-.label-info .badge {
+.btn-info .badge {
 	color: #5bc0de;
 	background-color: #fff;
 }
-.label-warning .badge {
+.btn-warning .badge {
 	color: #f0ad4e;
 	background-color: #fff;
 }
-.label-danger .badge {
+.btn-danger .badge {
 	color: #d9534f;
 	background-color: #fff;
+}
+a:hover {
+	text-decoration: none !important;
 }
 </style>
 
@@ -99,30 +102,30 @@
 			<td><%= allties.length %></td>
 			<td>
 				<a href="/viewall/alumni/?search=<%= student.name %> Positive">
-				<label class="label label-success"> Positive <span class="badge"> <%= @positive %> </span> </label>
+				<btn class="btn btn-success"> Positive <span class="badge"> <%= @positive %> </span> </btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Negative">
-				<label class="label label-danger"> Negative <span class="badge"> <%= @negative %> </span> </label>
+				<btn class="btn btn-danger"> Negative <span class="badge"> <%= @negative %> </span> </btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Neutral">
-				<label class="label label-info"> Neutral <span class="badge"> <%= @neutral %> </span> </label>
+				<btn class="btn btn-info"> Neutral <span class="badge"> <%= @neutral %> </span> </btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Registered">
-				<label class="label label-primary"> Registered <span class="badge"> <%= @registered %> </span> </label>
+				<btn class="btn btn-primary"> Registered <span class="badge"> <%= @registered %> </span> </btn>
 				</a>
 			</td>
 			<td>
 				<a href="/viewall/alumni/?search=<%= student.name %> Ready">
-				<label class="label label-primary">Ready <span class="badge"> <%= @ready %> </span></label>
+				<btn class="btn btn-primary">Ready <span class="badge"> <%= @ready %> </span></btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Found">
-				<label class="label label-success">Found  <span class="badge"> <%= @found %> </span></label>
+				<btn class="btn btn-success">Found  <span class="badge"> <%= @found %> </span></btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Tobesearched">
-				<label class="label label-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></label>
+				<btn class="btn btn-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></btn>
 				</a>
 				<a href="/viewall/alumni/?search=<%= student.name %> Dumped">
-				<label class="label label-danger">Dumped <span class="badge"> <%= @dumped %> </span></label>
+				<btn class="btn btn-danger">Dumped <span class="badge"> <%= @dumped %> </span></btn>
 				</a>
 			</td>
 		</tr>
