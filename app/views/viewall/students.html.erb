@@ -112,10 +112,18 @@
 				</a>
 			</td>
 			<td>
+				<a href="/viewall/alumni/?search=<%= student.name %> Ready">
 				<label class="label label-primary">Ready <span class="badge"> <%= @ready %> </span></label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Found">
 				<label class="label label-success">Found  <span class="badge"> <%= @found %> </span></label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Tobesearched">
 				<label class="label label-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Dumped">
 				<label class="label label-danger">Dumped <span class="badge"> <%= @dumped %> </span></label>
+				</a>
 			</td>
 		</tr>
 		<% end %>
