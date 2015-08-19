@@ -20,24 +20,24 @@ RSpec.describe ViewallController, :type => :controller do
     end
   end
 
-  describe 'Should be able to get viewall pages when signed in as StudentMember' do
-    it 'Should get viewall alumni' do
+  describe 'Should not be able to get viewall pages when signed in as StudentMember' do
+    it 'Should not get viewall alumni' do
       user = FactoryGirl.create :StudentMember
       sign_in user
       get :alumni
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(302)
     end
-    it 'Should get viewall students' do
+    it 'Should not get viewall students' do
       user = FactoryGirl.create :StudentMember
       sign_in user
       get :students
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(302)
     end
-    it 'Should get viewall paid alumni' do
+    it 'Should not get viewall paid alumni' do
       user = FactoryGirl.create :StudentMember
       sign_in user
       get :paid
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(302)
     end
   end
 
