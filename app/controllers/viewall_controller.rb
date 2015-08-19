@@ -1,5 +1,5 @@
 class ViewallController < ApplicationController
-  before_filter :ensure_signed_in
+  before_filter :authenticate_coordinator!
 
   def alumni
     @allAlums = Alumni.select("*").joins(:AlumniData, :AlumniStatus, :TieAlumniWithStudentMember)
