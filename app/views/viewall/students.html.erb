@@ -87,7 +87,7 @@
 						<% else %>
 						<% @search = 0 %>
 						<% end %>
-						
+
 					<% end %>
 				<% else %>
 					<% @searchAdd = 100 %>
@@ -98,10 +98,18 @@
 			<td><%= student.name %></td>
 			<td><%= allties.length %></td>
 			<td>
+				<a href="/viewall/alumni/?search=<%= student.name %> Positive">
 				<label class="label label-success"> Positive <span class="badge"> <%= @positive %> </span> </label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Negative">
 				<label class="label label-danger"> Negative <span class="badge"> <%= @negative %> </span> </label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Neutral">
 				<label class="label label-info"> Neutral <span class="badge"> <%= @neutral %> </span> </label>
+				</a>
+				<a href="/viewall/alumni/?search=<%= student.name %> Registered">
 				<label class="label label-primary"> Registered <span class="badge"> <%= @registered %> </span> </label>
+				</a>
 			</td>
 			<td>
 				<label class="label label-primary">Ready <span class="badge"> <%= @ready %> </span></label>
