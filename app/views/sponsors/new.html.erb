@@ -12,8 +12,8 @@
 
 <% end %>
 
-<%= text_field_tag "sponsor[" + attribute + "]", @current_id, :type => "hidden" %>
-<%= text_field_tag "sponsor[" + attribute + "]", @current_role, :type => "hidden" %>
+<%= text_field_tag "sponsor[associate_id]", @current_id, :type => "hidden" %>
+<%= text_field_tag "sponsor[associate_role]", @current_role, :type => "hidden" %>
 
 <% if attribute.humanize.downcase.include? "associate"
   next
