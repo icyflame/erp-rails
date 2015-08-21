@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816171119) do
+ActiveRecord::Schema.define(version: 20150821154702) do
 
   create_table "alumni_data", force: true do |t|
     t.integer  "alumni_id"
@@ -151,6 +151,10 @@ ActiveRecord::Schema.define(version: 20150816171119) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phase"
+    t.string   "remarks_about_phase"
+    t.string   "associate_id"
+    t.string   "associate_role"
   end
 
   create_table "student_members", force: true do |t|
