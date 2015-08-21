@@ -2,7 +2,23 @@ class SponsorsController < ApplicationController
   before_filter :ensure_signed_in
 
   def show
-    @allSponsors = Sponsor.all
+    @allNames = Hash.new
+    @allNames['coordinator'] = {}
+    @allNames['student_member'] = {}
+    allCoords = Coordinator.all
+    allCoords.each do |c|
+      @allNames['coordinator'][c.id] = c.name
+    end
+    allStuds = StudentMember.all
+    allStuds.each do |s|
+      @allNames['student_member'][s.id] = s.name
+    end
+
+    if student_member_signed_in?
+      @allSponsors = Sponsor.where(:associate_role => 'student_member')
+    else
+      @allSponsors = Sponsor.all
+    end
   end
 
   def view
@@ -10,6 +26,13 @@ class SponsorsController < ApplicationController
   end
 
   def new
+    if student_member_signed_in?
+      @current_id = current_student_member.id
+      @current_role = 'student_member'
+    elsif coordinator_signed_in?
+      @current_id = current_coordinator.id
+      @current_role = 'coordinator'
+    end
   end
 
   def create
