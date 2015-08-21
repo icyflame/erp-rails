@@ -18,6 +18,9 @@
         Proposal Sent?
       </td>
       <td>
+        Assigned to
+      </td>
+      <td>
         Status
       </td>
       <td>
@@ -36,6 +39,9 @@
       </td>
       <td>
         <%= sponsor.proposal_sent %>
+      </td>
+      <td>
+        <%= @allNames[sponsor.associate_role.to_s][sponsor.associate_id.to_i] %>
       </td>
       <td>
         <%= sponsor.status %>
