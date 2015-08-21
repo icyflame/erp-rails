@@ -10,6 +10,10 @@
 
 <% end %>
 
+<% if attribute.humanize.downcase.include? "associate"
+  next
+end %>
+
 <%= label_tag attribute %>
 
 <% if attribute.humanize.downcase.include? "date" %>
@@ -29,6 +33,11 @@
 <% elsif attribute.humanize.downcase.include? "alumnus" %>
 
 <%= select_tag "sponsor[" + attribute + "]", options_for_select([ "yes", "no" ], @sponsor.attributes[attribute].to_s) %>
+<br>
+
+<% elsif (attribute.humanize.downcase.include? "phase" and not attribute.humanize.downcase.include? "remarks") %>
+
+<%= select_tag "sponsor[" + attribute + "]", options_for_select([ "1", "2", "3", "other" ], @sponsor.attributes[attribute].to_s) %>
 <br>
 
 <% else %>
