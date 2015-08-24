@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   get '/data/administrator/addmorealumni' => 'data#addmore'
   get '/data/administrator/backup' => 'data#backup'
 
+  get 'allotment/allot' => 'allotment#allot'
+
   post '/alumni/status/search' => 'alumni_status#updatesearch'
   post '/alumni/status/response' => 'alumni_status#updateresponse'
 
