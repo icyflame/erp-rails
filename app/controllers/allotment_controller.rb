@@ -11,7 +11,7 @@ class AllotmentController < ApplicationController
     iterator = 0
 
     alum_to_allot.each do |alumnus|
-      temp = TieAlumniWithStudentMember.where(:alumni_id => alumus.id).first
+      temp = TieAlumniWithStudentMember.where(:alumni_id => alumnus.id).first
       # temp.alumni_id        = alumnus.id.to_i
       studentmember_index = (iterator / num_to_allot_each)
       if studentmember_index >= ids_to_allot.count
