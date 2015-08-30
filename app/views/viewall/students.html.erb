@@ -101,32 +101,72 @@ a:hover {
 			<td><%= student.name %></td>
 			<td><%= allties.length %></td>
 			<td>
-				<a href="/viewall/alumni/?search=<%= student.name %> Positive">
-				<btn class="btn btn-success"> Positive <span class="badge"> <%= @positive %> </span> </btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Negative">
-				<btn class="btn btn-danger"> Negative <span class="badge"> <%= @negative %> </span> </btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Neutral">
-				<btn class="btn btn-info"> Neutral <span class="badge"> <%= @neutral %> </span> </btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Registered">
-				<btn class="btn btn-primary"> Registered <span class="badge"> <%= @registered %> </span> </btn>
-				</a>
+				<% if allties.length >= 1 %>
+				<div class="progress">
+					<a href="/viewall/alumni/?search=<%= student.name %> Positive">
+					<!-- <btn class="btn btn-success"> Positive <span class="badge"> <%= @positive %> </span> </btn> -->
+					<div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @positive/allties.length * 100 %>%;">
+						<%= @positive/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Negative">
+					<!-- <btn class="btn btn-danger"> Negative <span class="badge"> <%= @negative %> </span> </btn> -->
+					<div class="progress-bar progress-bar-danger" role="progressbar" style="width: <%= @negative/allties.length * 100 %>%;">
+						<%= @negative/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Neutral">
+					<!-- <btn class="btn btn-info"> Neutral <span class="badge"> <%= @neutral %> </span> </btn> -->
+					<div class="progress-bar progress-bar-info" role="progressbar" style="width: <%= @neutral/allties.length * 100 %>%;">
+						<%= @neutral/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Registered">
+					<!-- <btn class="btn btn-primary"> Registered <span class="badge"> <%= @registered %> </span> </btn> -->
+					<div class="progress-bar progress-bar-primary" role="progressbar" style="width: <%= @registered/allties.length * 100 %>%;">
+						<%= @registered/allties.length %>
+					</div>
+					</a>
+				</div>
+				<% else %>
+				<p>
+					No alumni alloted
+				</p>
+				<% end %>
 			</td>
 			<td>
-				<a href="/viewall/alumni/?search=<%= student.name %> Ready">
-				<btn class="btn btn-primary">Ready <span class="badge"> <%= @ready %> </span></btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Found">
-				<btn class="btn btn-success">Found  <span class="badge"> <%= @found %> </span></btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Tobesearched">
-				<btn class="btn btn-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></btn>
-				</a>
-				<a href="/viewall/alumni/?search=<%= student.name %> Dumped">
-				<btn class="btn btn-danger">Dumped <span class="badge"> <%= @dumped %> </span></btn>
-				</a>
+				<% if allties.length >= 1 %>
+				<div class="progress">
+					<a href="/viewall/alumni/?search=<%= student.name %> Ready">
+					<!-- <btn class="btn btn-primary">Ready <span class="badge"> <%= @ready %> </span></btn> -->
+					<div class="progress-bar progress-bar-primary" role="progressbar" style="width: <%= @ready/allties.length * 100 %>%;">
+						<%= @ready/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Found">
+					<!-- <btn class="btn btn-success">Found  <span class="badge"> <%= @found %> </span></btn> -->
+					<div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @found/allties.length * 100 %>%;">
+						<%= @found/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Tobesearched">
+					<!-- <btn class="btn btn-info">Tobesearched <span class="badge"> <%= @tobesearched %> </span></btn> -->
+					<div class="progress-bar progress-bar-info" role="progressbar" style="width: <%= @tobesearched/allties.length * 100 %>%;">
+						<%= @tobesearched/allties.length %>
+					</div>
+					</a>
+					<a href="/viewall/alumni/?search=<%= student.name %> Dumped">
+					<!-- <btn class="btn btn-danger">Dumped <span class="badge"> <%= @dumped %> </span></btn> -->
+					<div class="progress-bar progress-bar-danger" role="progressbar" style="width: <%= @dumped/allties.length * 100 %>%;">
+						<%= @dumped/allties.length %>
+					</div>
+					</a>
+				</div>
+				<% else %>
+				<p>
+					No alumni Alloted
+				</p>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>
